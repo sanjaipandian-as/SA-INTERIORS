@@ -71,14 +71,23 @@ const Portfolio = () => {
 
   return (
     <div>
-      <section className="relative pt-24 pb-20 bg-[#f6f3f2] text-[#002121] mt-[72px]">
-        <div className="max-w-7xl mx-auto px-6 text-center relative z-10 py-10 overflow-hidden">
+      <section className="relative w-full h-[50vh] min-h-[400px] flex items-center justify-center overflow-hidden">
+        {/* Background Image */}
+        <div className="absolute inset-0">
+          <img 
+            src="https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?w=1600&q=80" 
+            alt="Portfolio Hero" 
+            className="w-full h-full object-cover brightness-[0.4]" 
+          />
+        </div>
+        
+        <div className="max-w-7xl mx-auto px-6 text-center relative z-10 pt-16">
           <ScrollReveal>
             <p className="text-[#d89a5b] text-[10px] md:text-xs font-bold tracking-[0.5em] uppercase mb-4 pl-[0.5em]">Our Work</p>
-            <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-sans font-bold uppercase tracking-[0.1em] md:tracking-[0.2em] mb-6 md:mb-8 pl-[0.1em] md:pl-[0.2em]">
+            <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-sans font-bold uppercase tracking-[0.1em] md:tracking-[0.2em] mb-6 md:mb-8 pl-[0.1em] md:pl-[0.2em] text-white">
               Portfolio
             </h1>
-            <p className="text-gray-600 text-[15px] md:text-xl max-w-2xl mx-auto font-medium leading-relaxed">
+            <p className="text-white/80 text-[15px] md:text-xl max-w-2xl mx-auto font-medium leading-relaxed">
               Explore our collection of carefully crafted interiors across residential, commercial, and hospitality sectors.
             </p>
           </ScrollReveal>

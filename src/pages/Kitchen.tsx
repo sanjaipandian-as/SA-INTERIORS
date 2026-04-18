@@ -133,7 +133,7 @@ export default function Kitchen() {
   return (
     <div className="bg-white">
       {/* Hero Section */}
-      <section className="w-full h-[80vh] min-h-[600px] mt-[72px] relative overflow-hidden flex items-center">
+      <section className="w-full h-[80vh] min-h-[600px] relative overflow-hidden flex items-center">
         {/* Background Images */}
         {slides.map((slide, index) => (
           <div

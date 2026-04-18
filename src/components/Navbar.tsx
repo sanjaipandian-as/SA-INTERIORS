@@ -1,12 +1,30 @@
 import { useState, useEffect, useRef } from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { ChevronDown, Menu, X } from "lucide-react";
 
 const Navbar = () => {
+  const location = useLocation();
+  const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
   const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
   const [mobileExpanded, setMobileExpanded] = useState<string | null>(null);
   const dropdownTimeout = useRef<NodeJS.Timeout | null>(null);
+
+  const solidPages = ["/products", "/about", "/testimonials", "/blog", "/contact"];
+  const isSolidPage = solidPages.includes(location.pathname);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (window.scrollY > 50) {
+        setScrolled(true);
+      } else {
+        setScrolled(false);
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   const toggleMobileExpanded = (key: string) => {
     setMobileExpanded(prev => prev === key ? null : key);
@@ -51,20 +69,11 @@ const Navbar = () => {
 
   return (
     <>
-      <header className="fixed top-0 left-0 right-0 bg-[#002121] text-white z-50 border-b border-white/5 shadow-xl">
+      <header className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 text-white ${(scrolled || activeDropdown !== null || isSolidPage) ? 'bg-[#002121] border-b border-white/5 shadow-xl' : 'bg-transparent border-b border-transparent'}`}>
         <div className="w-full flex items-center justify-between px-8 lg:px-16 py-3">
-          
+
           {/* LOGO */}
           <Link to="/" className="flex items-center gap-3 group shrink-0">
-            <div className="w-9 h-9 flex items-center justify-center">
-              <svg viewBox="0 0 40 40" fill="none" stroke="#d89a5b" strokeWidth="2" className="w-full h-full">
-                <rect x="5" y="5" width="30" height="30" />
-                <path d="M10 35V15C10 10 15 5 20 5C25 5 30 10 30 15V35" />
-                <line x1="15" y1="35" x2="15" y2="10" />
-                <line x1="25" y1="35" x2="25" y2="10" />
-                <line x1="20" y1="35" x2="20" y2="5" />
-              </svg>
-            </div>
             <span className="text-lg md:text-xl font-brand tracking-[0.2em] font-semibold transition-colors group-hover:text-[#d89a5b] uppercase">
               SA interiors
             </span>
@@ -177,28 +186,19 @@ const Navbar = () => {
       <div className={`fixed inset-0 bg-[#002121] text-white z-[60] flex flex-col p-10 transition-transform duration-500 xl:hidden overflow-y-auto ${menuOpen ? 'translate-x-0' : 'translate-x-full'}`}>
         <div className="flex justify-between items-center gap-6 mb-12 border-b border-white/10 pb-6 w-full">
           <Link to="/" onClick={() => setMenuOpen(false)} className="flex items-center gap-3 shrink-0 overflow-hidden">
-            <div className="w-8 h-8 flex items-center justify-center shrink-0">
-              <svg viewBox="0 0 40 40" fill="none" stroke="#d89a5b" strokeWidth="2" className="w-full h-full">
-                <rect x="5" y="5" width="30" height="30" />
-                <path d="M10 35V15C10 10 15 5 20 5C25 5 30 10 30 15V35" />
-                <line x1="15" y1="35" x2="15" y2="10" />
-                <line x1="25" y1="35" x2="25" y2="10" />
-                <line x1="20" y1="35" x2="20" y2="5" />
-              </svg>
-            </div>
             <span className="text-[17px] sm:text-lg font-brand tracking-[0.2em] uppercase font-bold text-white whitespace-nowrap">SA interiors</span>
           </Link>
           <button onClick={() => setMenuOpen(false)} className="w-10 h-10 flex items-center justify-center border border-white/10 hover:border-[#d89a5b] text-white hover:text-[#d89a5b] transition-all bg-[#001c1c] shrink-0">
             <X size={22} strokeWidth={1.5} />
           </button>
         </div>
-        
+
         <div className="flex flex-col gap-6 font-serif mb-12">
           <Link to="/home_interior" className="text-3xl border-b border-white/10 pb-4 hover:text-[#d89a5b] transition-colors" onClick={() => setMenuOpen(false)}>Home Interiors</Link>
           <Link to="/kitchen-wardrobe" className="text-3xl border-b border-white/10 pb-4 hover:text-[#d89a5b] transition-colors" onClick={() => setMenuOpen(false)}>Kitchen & Wardrobe</Link>
-          
+
           <div className="flex flex-col border-b border-white/10 pb-4">
-            <button 
+            <button
               className="flex justify-between items-center text-3xl font-serif text-white hover:text-[#d89a5b] transition-colors text-left"
               onClick={() => toggleMobileExpanded('commercial')}
             >
@@ -215,7 +215,7 @@ const Navbar = () => {
           <Link to="/portfolio" className="text-3xl border-b border-white/10 pb-4 hover:text-[#d89a5b] transition-colors" onClick={() => setMenuOpen(false)}>Portfolio</Link>
 
           <div className="flex flex-col border-b border-white/10 pb-4">
-            <button 
+            <button
               className="flex justify-between items-center text-3xl font-serif text-white hover:text-[#d89a5b] transition-colors text-left"
               onClick={() => toggleMobileExpanded('products')}
             >
@@ -230,7 +230,7 @@ const Navbar = () => {
           </div>
 
           <div className="flex flex-col border-b border-white/10 pb-4">
-            <button 
+            <button
               className="flex justify-between items-center text-3xl font-serif text-white hover:text-[#d89a5b] transition-colors text-left"
               onClick={() => toggleMobileExpanded('company')}
             >
