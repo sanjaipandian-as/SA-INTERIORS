@@ -5,8 +5,6 @@ import { ChevronDown, Menu, X } from "lucide-react";
 const Navbar = () => {
   const [menuOpen, setMenuOpen] = useState(false);
   const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
-  const [isVisible, setIsVisible] = useState(true);
-  const scrollTimeout = useRef<NodeJS.Timeout | null>(null);
   const dropdownTimeout = useRef<NodeJS.Timeout | null>(null);
 
   const handleDropdownEnter = (dropdown: string) => {
@@ -20,25 +18,7 @@ const Navbar = () => {
     }, 150);
   };
 
-  useEffect(() => {
-    const handleScroll = () => {
-      // Hide while scrolling
-      setIsVisible(false);
 
-      // Clear the timeout and set a new one to show navbar after scroll stop
-      if (scrollTimeout.current) clearTimeout(scrollTimeout.current);
-      
-      scrollTimeout.current = setTimeout(() => {
-        setIsVisible(true);
-      }, 250); // Detect stop after 250ms of no scrolling
-    };
-
-    window.addEventListener("scroll", handleScroll, { passive: true });
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-      if (scrollTimeout.current) clearTimeout(scrollTimeout.current);
-    };
-  }, []);
 
   const navLinks = {
     commercial: [
@@ -67,7 +47,7 @@ const Navbar = () => {
 
   return (
     <>
-      <header className={`fixed top-0 left-0 right-0 bg-[#002121] text-white z-50 transition-opacity duration-500 border-b border-white/5 shadow-xl ${isVisible ? 'opacity-100' : 'opacity-0 pointer-events-none'}`}>
+      <header className="fixed top-0 left-0 right-0 bg-[#002121] text-white z-50 border-b border-white/5 shadow-xl">
         <div className="w-full flex items-center justify-between px-8 lg:px-16 py-3">
           
           {/* LOGO */}
