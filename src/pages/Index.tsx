@@ -437,24 +437,6 @@ const Index = () => {
                   </div>
                 </div>
 
-                {/* Navigation Controls (Bottom Right) */}
-                <div className="absolute bottom-12 right-6 md:right-20 flex items-center z-20">
-                  <div className="bg-black/30 backdrop-blur-md border border-white/10 rounded-full py-2 px-6 flex items-center gap-6">
-                    <button className="text-white/60 hover:text-white transition-all transform hover:-translate-x-1">
-                      <ChevronLeft size={20} />
-                    </button>
-
-                    <div className="flex items-center gap-2 text-white text-[11px] font-bold tracking-widest border-x border-white/10 px-6">
-                      <span>0{idx + 1}</span>
-                      <span className="w-1.5 h-1.5 rounded-full bg-[#d89a5b] shadow-[0_0_10px_#d89a5b]" />
-                      <span className="text-white/40">02</span>
-                    </div>
-
-                    <button className="text-white/60 hover:text-white transition-all transform hover:translate-x-1">
-                      <ChevronRight size={20} />
-                    </button>
-                  </div>
-                </div>
               </div>
             </SwiperSlide>
           ))}

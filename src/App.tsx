@@ -8,6 +8,7 @@ import Layout from "./components/Layout";
 import Index from "./pages/Index";
 import About from "./pages/About";
 import Services from "./pages/Services";
+import Products from "./pages/Products";
 import Homeinterior from "./pages/Home_Interior";
 import Kitchen from "./pages/Kitchen";
 import Commercial from "./pages/Commercial";
@@ -48,6 +49,7 @@ const App = () => {
               <Route path="/commercial" element={<Commercial />} />
               <Route path="/about" element={<About />} />
               <Route path="/services" element={<Services />} />
+              <Route path="/products" element={<Products />} />
               <Route path="/portfolio" element={<Portfolio />} />
               <Route path="/contact" element={<Contact />} />
               <Route path="/testimonials" element={<Testimonials />} />

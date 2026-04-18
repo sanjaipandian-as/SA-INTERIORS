@@ -1,12 +1,24 @@
 import { useState, useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
-import { Search, Heart, ShoppingCart, User, ChevronDown, Menu, X } from "lucide-react";
+import { ChevronDown, Menu, X } from "lucide-react";
 
 const Navbar = () => {
   const [menuOpen, setMenuOpen] = useState(false);
   const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
   const [isVisible, setIsVisible] = useState(true);
   const scrollTimeout = useRef<NodeJS.Timeout | null>(null);
+  const dropdownTimeout = useRef<NodeJS.Timeout | null>(null);
+
+  const handleDropdownEnter = (dropdown: string) => {
+    if (dropdownTimeout.current) clearTimeout(dropdownTimeout.current);
+    setActiveDropdown(dropdown);
+  };
+
+  const handleDropdownLeave = () => {
+    dropdownTimeout.current = setTimeout(() => {
+      setActiveDropdown(null);
+    }, 150);
+  };
 
   useEffect(() => {
     const handleScroll = () => {
@@ -30,6 +42,7 @@ const Navbar = () => {
 
   const navLinks = {
     commercial: [
+      
       { name: "Restaurants & Food courts", path: "/" },
       { name: "Resorts & hotels", path: "/" },
       { name: "Schools & Play Space Interiors", path: "/" },
@@ -37,11 +50,11 @@ const Navbar = () => {
       { name: "Events & banquets", path: "/" },
     ],
     products: [
-      { name: "Civil, Electrical & Plumbing", path: "/" },
-      { name: "False ceiling", path: "/" },
-      { name: "Painting", path: "/" },
-      { name: "Flooring", path: "/" },
-      { name: "Custom Furnitures", path: "/" },
+      { name: "Civil, Electrical & Plumbing", path: "/products#civil" },
+      { name: "False ceiling", path: "/products#ceiling" },
+      { name: "Painting", path: "/products#painting" },
+      { name: "Flooring", path: "/products#flooring" },
+      { name: "Custom Furnitures", path: "/products#furniture" },
     ],
     company: [
       { name: "About", path: "/about" },
@@ -68,7 +81,7 @@ const Navbar = () => {
                 <line x1="20" y1="35" x2="20" y2="5" />
               </svg>
             </div>
-            <span className="text-2xl md:text-3xl font-brand tracking-[0.2em] font-semibold transition-colors group-hover:text-[#d89a5b] uppercase">
+            <span className="text-lg md:text-xl font-brand tracking-[0.2em] font-semibold transition-colors group-hover:text-[#d89a5b] uppercase">
               SA interiors
             </span>
           </Link>
@@ -79,12 +92,19 @@ const Navbar = () => {
             <Link to="/kitchen-wardrobe" className="hover:text-[#d89a5b] transition-all whitespace-nowrap py-4">Kitchen & Wardrobe</Link>
 
             {/* COMMERCIAL */}
-            <div className="group" onMouseEnter={() => setActiveDropdown('commercial')} onMouseLeave={() => setActiveDropdown(null)}>
-              <div className="flex items-center gap-1.5 hover:text-[#d89a5b] transition-all py-4 cursor-pointer">
+            <div
+              className="relative h-full flex items-center"
+              onMouseEnter={() => handleDropdownEnter('commercial')}
+              onMouseLeave={handleDropdownLeave}
+            >
+              <div className="flex items-center gap-1.5 hover:text-[#d89a5b] transition-all cursor-pointer">
                 Commercial <ChevronDown size={14} className={`transition-transform duration-300 ${activeDropdown === 'commercial' ? 'rotate-180' : ''}`} />
               </div>
-              
-              <div className={`fixed top-[72px] left-0 w-full bg-[#002121] border-t border-white/5 transition-all duration-500 shadow-2xl z-[60] overflow-hidden ${activeDropdown === 'commercial' ? 'max-h-[500px] opacity-100 visible' : 'max-h-0 opacity-0 invisible pointer-events-none'}`}>
+
+              <div className={`fixed top-[72px] left-0 right-0 bg-[#002121] border-t border-white/5 shadow-2xl z-[60] transition-all duration-300 ${activeDropdown === 'commercial' ? 'opacity-100 visible' : 'opacity-0 invisible pointer-events-none'}`}
+                onMouseEnter={() => handleDropdownEnter('commercial')}
+                onMouseLeave={handleDropdownLeave}
+              >
                 <div className="px-8 lg:px-16 py-12">
                   <div className="flex flex-col gap-6 max-w-xs">
                     {navLinks.commercial.map((item) => (
@@ -100,11 +120,19 @@ const Navbar = () => {
             <Link to="/portfolio" className="hover:text-[#d89a5b] transition-all whitespace-nowrap py-4">Portfolio</Link>
 
             {/* PRODUCTS */}
-            <div className="group" onMouseEnter={() => setActiveDropdown('products')} onMouseLeave={() => setActiveDropdown(null)}>
-              <div className="flex items-center gap-1.5 hover:text-[#d89a5b] transition-all py-4 cursor-pointer">
+            <div
+              className="relative h-full flex items-center"
+              onMouseEnter={() => handleDropdownEnter('products')}
+              onMouseLeave={handleDropdownLeave}
+            >
+              <div className="flex items-center gap-1.5 hover:text-[#d89a5b] transition-all cursor-pointer">
                 Products <ChevronDown size={14} className={`transition-transform duration-300 ${activeDropdown === 'products' ? 'rotate-180' : ''}`} />
               </div>
-              <div className={`fixed top-[72px] left-0 w-full bg-[#002121] border-t border-white/5 transition-all duration-500 shadow-2xl z-[60] overflow-hidden ${activeDropdown === 'products' ? 'max-h-[500px] opacity-100 visible' : 'max-h-0 opacity-0 invisible pointer-events-none'}`}>
+
+              <div className={`fixed top-[72px] left-0 right-0 bg-[#002121] border-t border-white/5 shadow-2xl z-[60] transition-all duration-300 ${activeDropdown === 'products' ? 'opacity-100 visible' : 'opacity-0 invisible pointer-events-none'}`}
+                onMouseEnter={() => handleDropdownEnter('products')}
+                onMouseLeave={handleDropdownLeave}
+              >
                 <div className="px-8 lg:px-16 py-12">
                   <div className="flex flex-col gap-6 max-w-xs">
                     {navLinks.products.map((item) => (
@@ -118,11 +146,19 @@ const Navbar = () => {
             </div>
 
             {/* OUR COMPANY */}
-            <div className="group" onMouseEnter={() => setActiveDropdown('company')} onMouseLeave={() => setActiveDropdown(null)}>
-              <div className="flex items-center gap-1.5 hover:text-[#d89a5b] transition-all py-4 cursor-pointer">
+            <div
+              className="relative h-full flex items-center"
+              onMouseEnter={() => handleDropdownEnter('company')}
+              onMouseLeave={handleDropdownLeave}
+            >
+              <div className="flex items-center gap-1.5 hover:text-[#d89a5b] transition-all cursor-pointer">
                 Our Company <ChevronDown size={14} className={`transition-transform duration-300 ${activeDropdown === 'company' ? 'rotate-180' : ''}`} />
               </div>
-              <div className={`fixed top-[72px] left-0 w-full bg-[#002121] border-t border-white/5 transition-all duration-500 shadow-2xl z-[60] overflow-hidden ${activeDropdown === 'company' ? 'max-h-[500px] opacity-100 visible' : 'max-h-0 opacity-0 invisible pointer-events-none'}`}>
+
+              <div className={`fixed top-[72px] left-0 right-0 bg-[#002121] border-t border-white/5 shadow-2xl z-[60] transition-all duration-300 ${activeDropdown === 'company' ? 'opacity-100 visible' : 'opacity-0 invisible pointer-events-none'}`}
+                onMouseEnter={() => handleDropdownEnter('company')}
+                onMouseLeave={handleDropdownLeave}
+              >
                 <div className="px-8 lg:px-16 py-12">
                   <div className="flex flex-col gap-6 max-w-xs">
                     {navLinks.company.map((item) => (
@@ -138,13 +174,6 @@ const Navbar = () => {
 
           {/* RIGHT ICONS & CTA */}
           <div className="hidden lg:flex items-center gap-8">
-            <div className="flex items-center gap-5 text-white/90">
-              <button className="hover:text-[#d89a5b] transition-all hover:scale-110"><Search size={22} /></button>
-              <button className="hover:text-[#d89a5b] transition-all hover:scale-110"><Heart size={22} /></button>
-              <button className="hover:text-[#d89a5b] transition-all hover:scale-110"><ShoppingCart size={22} /></button>
-              <button className="hover:text-[#d89a5b] transition-all hover:scale-110"><User size={22} /></button>
-            </div>
-            
             <button
               onClick={() => window.dispatchEvent(new CustomEvent("openConsultation"))}
               className="bg-[#965b32] text-white px-8 py-3 rounded-none text-[11px] font-black tracking-[0.25em] uppercase hover:bg-white hover:text-[#002121] transition-all transform hover:scale-105 whitespace-nowrap border-2 border-transparent hover:border-[#965b32]"
@@ -195,12 +224,6 @@ const Navbar = () => {
           </div>
         </div>
 
-        <div className="mt-20 flex justify-center gap-12 mb-12 text-[#d89a5b]">
-          <Search size={32} />
-          <Heart size={32} />
-          <ShoppingCart size={32} />
-          <User size={32} />
-        </div>
 
         <Link
           to="/contact"
