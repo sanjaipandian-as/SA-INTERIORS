@@ -135,7 +135,7 @@ export default function HomeInterior() {
 
   return (
     <>
-    <section className="w-full h-[80vh] min-h-[600px] relative overflow-hidden flex items-center mt-[72px]">
+    <section className="w-full h-[80vh] min-h-[600px] relative overflow-hidden flex items-center">
       {/* Background Images */}
       {slides.map((slide, index) => (
         <div

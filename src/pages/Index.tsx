@@ -143,7 +143,7 @@ const steps = [
 
 const StatItem = ({ stat, index }: { stat: any, index: number }) => {
   const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, amount: 0.5 });
+  const isInView = useInView(ref, { once: false, amount: 0.3 });
   const Icon = stat.icon;
 
   return (
@@ -464,6 +464,7 @@ const Index = () => {
             <motion.h2
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: false }}
               transition={{ duration: 1 }}
               className="text-white font-brand text-3xl md:text-5xl lowercase italic opacity-90"
             >
@@ -964,36 +965,48 @@ const Index = () => {
               className="pb-10 pt-4"
             >
               {testimonials.map((item) => (
-                <SwiperSlide key={item.id}>
+                <SwiperSlide key={item.id} className="h-auto">
                   <motion.div
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
-                    className="relative w-full h-[380px] md:h-[420px] overflow-hidden group cursor-pointer"
+                    className="flex flex-col h-full group bg-white"
                   >
-                    <img
-                      src={item.image}
-                      alt={item.name}
-                      className="absolute inset-0 w-full h-full object-cover transition-transform duration-[1.5s] group-hover:scale-110"
-                    />
+                    {/* Image Area - Compact Rectangular Style */}
+                    <div className="relative w-full aspect-[3/2] overflow-hidden">
+                      <img
+                        src={item.image}
+                        alt={item.name}
+                        className="w-full h-full object-cover grayscale-[0.2] group-hover:grayscale-0 transition-all duration-[1.5s] group-hover:scale-110"
+                      />
+                      {/* Architectural Frame Overlay */}
+                      <div className="absolute inset-0 border-[8px] border-white/0 group-hover:border-white/10 transition-all duration-700" />
+                    </div>
 
-                    {/* Dark gradient overlay covering the whole image smoothly */}
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-black/60 opacity-90 group-hover:opacity-100 transition-opacity duration-500" />
-
-                    {/* Content */}
-                    <div className="absolute inset-0 p-8 md:p-10 flex flex-col justify-between z-10 text-left">
+                    {/* Feedback Box - More compact */}
+                    <div className="bg-white p-6 md:p-7 flex-1 flex flex-col justify-between border-x border-b border-gray-100 shadow-sm group-hover:shadow-lg transition-all duration-500 relative">
+                      {/* Top Gold Accent Line */}
+                      <div className="absolute top-0 left-0 w-0 group-hover:w-full h-[3px] bg-[#d89a5b] transition-all duration-700" />
+                      
                       <div>
-                        <h3 className="text-white font-sans font-bold text-xl md:text-2xl mb-1 drop-shadow-md">
-                          {item.name}
-                        </h3>
-                        <p className="text-[#d89a5b] text-[10px] tracking-[0.3em] uppercase font-bold drop-shadow-sm">Verified Owner</p>
+                        <div className="mb-4 flex justify-between items-start">
+                          <MessageSquare className="w-6 h-6 text-[#d89a5b]/40" />
+                          <div className="flex gap-0.5">
+                            {[1, 2, 3, 4, 5].map((star) => (
+                              <Star key={star} size={8} fill="#d89a5b" className="text-[#d89a5b]" />
+                            ))}
+                          </div>
+                        </div>
+                        <p className="text-[#002121] text-xs md:text-[14px] leading-relaxed italic font-light opacity-80 group-hover:opacity-100 transition-opacity mb-4">
+                          "{item.review}"
+                        </p>
                       </div>
 
-                      <div>
-                        <div className="mb-4">
-                          <MessageSquare className="w-8 h-8 text-white/30" />
-                        </div>
-                        <p className="text-white/90 text-sm md:text-[15px] leading-relaxed italic font-light drop-shadow-sm">
-                          "{item.review}"
+                      <div className="pt-4 border-t border-gray-50">
+                        <h3 className="text-[#002121] font-brand font-bold text-base tracking-wide mb-0.5">
+                          {item.name}
+                        </h3>
+                        <p className="text-[#d89a5b] text-[9px] tracking-[0.4em] uppercase font-bold opacity-70">
+                          Residential Client ✦ Verified
                         </p>
                       </div>
                     </div>
