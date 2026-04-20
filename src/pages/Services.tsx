@@ -51,7 +51,7 @@ const Services = () => {
                       </li>
                     ))}
                   </ul>
-                  <Link to="/contact" className="inline-flex items-center gap-2 bg-primary text-primary-foreground px-6 py-3 rounded-full text-xs font-semibold tracking-widest uppercase hover:opacity-90 transition-opacity">
+                  <Link to="#" onClick={(e) => { e.preventDefault(); window.dispatchEvent(new CustomEvent('openConsultation')); }} className="inline-flex items-center gap-2 bg-primary text-primary-foreground px-6 py-3 rounded-full text-xs font-semibold tracking-widest uppercase hover:opacity-90 transition-opacity">
                     Get a Quote <ArrowRight className="w-4 h-4" />
                   </Link>
                 </div>
@@ -113,7 +113,7 @@ const Services = () => {
           <ScrollReveal>
             <h2 className="text-4xl md:text-5xl font-serif text-background mb-6">Ready to Get Started?</h2>
             <p className="text-background/60 max-w-xl mx-auto mb-8">Book a free consultation and let's discuss how we can transform your space.</p>
-            <Link to="/contact" className="inline-flex items-center gap-2 bg-primary text-primary-foreground px-8 py-4 rounded-full text-xs font-semibold tracking-widest uppercase hover:opacity-90 transition-opacity">
+            <Link to="#" onClick={(e) => { e.preventDefault(); window.dispatchEvent(new CustomEvent('openConsultation')); }} className="inline-flex items-center gap-2 bg-primary text-primary-foreground px-8 py-4 rounded-full text-xs font-semibold tracking-widest uppercase hover:opacity-90 transition-opacity">
               Book Consultation <ArrowRight className="w-4 h-4" />
             </Link>
           </ScrollReveal>

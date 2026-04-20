@@ -112,37 +112,33 @@ const Blog = () => {
   };
 
   return (
-    <div className="bg-white min-h-screen pt-40 pb-24 text-[#002121]">
-      <div className="container mx-auto px-6">
-        {/* Header - Refined Architectural UI */}
-        <div className="mb-32 relative">
+    <div className="bg-white min-h-screen">
+      {/* Hero Section */}
+      <section className="relative w-full h-[60vh] min-h-[500px] flex items-center justify-center overflow-hidden">
+        {/* Background Image */}
+        <div className="absolute inset-0">
+          <img 
+            src="https://i.pinimg.com/1200x/0f/54/76/0f5476613757a50da5068eeca596a9e9.jpg" 
+            alt="Blog Hero" 
+            className="w-full h-full object-cover brightness-[0.4]" 
+          />
+        </div>
+        
+        <div className="max-w-7xl mx-auto px-6 text-center relative z-10 pt-16">
           <ScrollReveal>
-             <div className="flex flex-col md:flex-row items-start md:items-end justify-between gap-12">
-                <div className="max-w-3xl">
-                  <div className="flex items-center gap-4 mb-8">
-                     
-                     <p className="text-[#002121] text-[11px] font-black tracking-[0.5em] uppercase">Discovery & Innovation</p>
-                  </div>
-                  <h1 className="text-5xl sm:text-6xl md:text-9xl font-sans font-light tracking-tighter leading-[0.85] text-[#002121]">
-                    The <br />
-                    <span className="font-bold relative">
-                      Journal
-                      <motion.span 
-                        initial={{ width: 0 }}
-                        whileInView={{ width: '100%' }}
-                        className="absolute -bottom-2 md:-bottom-4 left-0 h-1 md:h-2 bg-[#d89a5b]"
-                      />
-                    </span>
-                  </h1>
-                </div>
-                <div className="max-w-sm ml-auto md:text-right">
-                   <p className="text-gray-400 text-lg font-light leading-relaxed border-t md:border-t-0 md:border-r-4 border-[#965b32]/20 pt-8 md:pt-0 md:pr-10">
-                    Exploring the convergence of computational design, advanced manufacturing, and residential lifestyle.
-                   </p>
-                </div>
-             </div>
+            <p className="text-[#d89a5b] text-[10px] md:text-xs font-bold tracking-[0.5em] uppercase mb-4 pl-[0.5em]">Discovery & Innovation</p>
+            <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-sans font-bold text-white mb-8 tracking-[0.1em] md:tracking-[0.2em] leading-[1.1] uppercase pl-[0.1em] md:pl-[0.2em]">
+              The <br /> Journal
+            </h1>
+            <p className="text-white/80 text-[15px] md:text-xl max-w-3xl mx-auto font-medium leading-relaxed">
+              Exploring the convergence of computational design, advanced manufacturing, and residential lifestyle.
+            </p>
           </ScrollReveal>
         </div>
+      </section>
+
+      <div className="py-24 text-[#002121]">
+        <div className="container mx-auto px-6">
 
         {/* Grid Layout - 100% Matching "Package Offers" Premium Aesthetic */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 mb-24">
@@ -291,6 +287,7 @@ const Blog = () => {
             </div>
           </div>
         </ScrollReveal>
+      </div>
       </div>
 
       {/* POPUP Modal - Replicating Package Offers Style Perfectly */}

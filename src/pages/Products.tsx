@@ -148,38 +148,61 @@ const Products = () => {
       const productExists = productsData.some(p => p.id === hashId);
       if (productExists) {
         setActiveProductId(hashId);
+        // Scroll to details section
+        setTimeout(() => {
+          const element = document.getElementById('product-details');
+          if (element) {
+            element.scrollIntoView({ behavior: "smooth", block: "start" });
+          }
+        }, 100);
       }
+    } else {
+      window.scrollTo(0, 0);
     }
-  }, [location.hash]);
+  }, [location.hash, location.pathname]);
 
   const activeProduct = productsData.find(p => p.id === activeProductId) || productsData[0];
 
   return (
-    <div className="pt-32 pb-24 bg-white min-h-screen">
-      <div className="container mx-auto px-6">
+    <div className="bg-white min-h-screen">
+      {/* Hero Section */}
+      <section className="relative w-full h-[60vh] min-h-[500px] flex items-center justify-center overflow-hidden">
+        {/* Background Image */}
+        <div className="absolute inset-0">
+          <img 
+            src="https://images.unsplash.com/photo-1497366811353-6870744d04b2?w=1600&q=80" 
+            alt="Products Hero" 
+            className="w-full h-full object-cover brightness-[0.4]" 
+          />
+        </div>
         
-        {/* Header Section */}
-        <ScrollReveal className="text-center mb-16">
-          <p className="text-[#965b32] text-xs font-bold tracking-[0.2em] uppercase mb-4">Our Services</p>
-          <h1 className="text-4xl md:text-6xl font-brand font-bold text-[#002121] mb-6">
-            Everything Your Space Needs
-          </h1>
-          <p className="text-slate-500 text-lg">
-            Click any service to explore the full scope and pricing.
-          </p>
-        </ScrollReveal>
+        <div className="max-w-7xl mx-auto px-6 text-center relative z-10 pt-16">
+          <ScrollReveal>
+            <p className="text-[#d89a5b] text-[10px] md:text-xs font-bold tracking-[0.5em] uppercase mb-4 pl-[0.5em]">Our Services</p>
+            <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-sans font-bold text-white mb-8 tracking-[0.1em] md:tracking-[0.2em] leading-[1.1] uppercase pl-[0.1em] md:pl-[0.2em]">
+              Everything Your <br /> Space Needs
+            </h1>
+            <p className="text-white/80 text-[15px] md:text-xl max-w-3xl mx-auto font-medium leading-relaxed">
+              Click any service to explore the full scope and pricing.
+            </p>
+          </ScrollReveal>
+        </div>
+      </section>
+
+      <div className="py-24 text-[#002121]">
+        <div className="container mx-auto px-6">
 
         {/* Deck of Cards */}
-        <div className="flex lg:grid lg:grid-cols-5 gap-4 mb-8 overflow-x-auto pb-8 pt-4 -mx-6 px-6 lg:mx-0 lg:px-0 snap-x scroll-smooth scroll-pl-6 lg:scroll-pl-0 items-stretch">
+        <div className="flex lg:grid lg:grid-cols-5 gap-6 lg:gap-8 mb-8 overflow-x-auto pb-8 pt-4 -mx-6 px-6 lg:mx-0 lg:px-0 snap-x scroll-smooth scroll-pl-6 lg:scroll-pl-0 items-stretch">
           
           {productsData.map((product) => (
             <button
               key={product.id}
               onClick={() => setActiveProductId(product.id)}
-              className={`flex-shrink-0 w-[160px] lg:w-auto snap-start flex flex-col text-left rounded-2xl overflow-hidden transition-all duration-500 ${
+              className={`flex-shrink-0 w-[160px] lg:w-auto snap-start flex flex-col text-left rounded-2xl overflow-hidden transition-all duration-500 border-2 ${
                 activeProductId === product.id
-                  ? "ring-2 ring-[#d89a5b] shadow-xl shadow-[#d89a5b]/10 transform -translate-y-1 bg-white"
-                  : "bg-slate-50 hover:bg-white hover:shadow-lg opacity-80 hover:opacity-100"
+                  ? "border-[#d89a5b] shadow-xl shadow-[#d89a5b]/10 transform -translate-y-1 bg-white"
+                  : "border-transparent bg-slate-50 hover:bg-white hover:shadow-lg opacity-80 hover:opacity-100"
               }`}
             >
               <div className="h-32 lg:h-40 w-full overflow-hidden">
@@ -189,7 +212,7 @@ const Products = () => {
                   className="w-full h-full object-cover transition-transform duration-700 hover:scale-110"
                 />
               </div>
-              <div className="p-4 lg:p-5 flex flex-col justify-between flex-grow">
+              <div className="px-5 py-4 lg:px-6 lg:py-5 flex flex-col justify-between flex-grow">
                 <div>
                   <span className={`text-sm font-bold block mb-1 ${activeProductId === product.id ? "text-[#d89a5b]" : "text-slate-400"}`}>
                     {product.number}
@@ -210,7 +233,7 @@ const Products = () => {
         </div>
 
         {/* Details Section */}
-        <div className="bg-white shadow-[0_8px_30px_rgb(0,0,0,0.04)] ring-1 ring-slate-100 rounded-2xl md:rounded-[2rem] overflow-hidden mt-6">
+        <div id="product-details" className="bg-white shadow-[0_8px_30px_rgb(0,0,0,0.04)] ring-1 ring-slate-100 rounded-2xl md:rounded-[2rem] overflow-hidden mt-6">
           
           {/* Tabs */}
           <div className="flex border-b border-slate-100 bg-white md:px-8">
@@ -328,6 +351,7 @@ const Products = () => {
           </div>
 
         </div>
+      </div>
       </div>
     </div>
   );

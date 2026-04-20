@@ -3,13 +3,13 @@ import { Link } from "react-router-dom";
 
 const Footer = () => {
   return (
-    <footer className="bg-[#002121] text-white pt-24 pb-12 font-sans overflow-hidden relative">
+    <footer className="bg-[#002121] text-white pt-16 pb-8 font-sans overflow-hidden relative">
       <div className="max-w-7xl mx-auto px-8">
         {/* Main Grid */}
-        <div className="grid grid-cols-2 lg:grid-cols-4 gap-x-6 gap-y-16 lg:gap-8 mb-20">
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-x-6 gap-y-10 lg:gap-8 mb-12">
           
           {/* Column 1: Brand & Social */}
-          <div className="col-span-2 lg:col-span-1 space-y-10">
+          <div className="col-span-2 lg:col-span-1 space-y-6">
             <div className="flex items-center gap-3">
               <div className="w-10 h-10 bg-[#d89a5b] rounded-sm flex items-center justify-center">
                 <span className="text-white font-black text-xl">SA</span>
@@ -36,7 +36,7 @@ const Footer = () => {
 
           {/* Column 2: Quick Links */}
           <div>
-            <h4 className="text-[12px] tracking-[0.4em] uppercase font-black text-[#d89a5b] mb-10">Our Company</h4>
+            <h4 className="text-[12px] tracking-[0.4em] uppercase font-black text-[#d89a5b] mb-6">Our Company</h4>
             <ul className="space-y-4">
               {[
                 { name: 'About', path: '/about' },
@@ -46,7 +46,18 @@ const Footer = () => {
                 { name: 'Contact', path: '/contact' }
               ].map((item) => (
                 <li key={item.name}>
-                  <Link to={item.path} className="text-white/60 hover:text-white transition-colors text-[15px] font-light tracking-wide">{item.name}</Link>
+                  <Link 
+                    to={item.path === '/contact' ? '#' : item.path} 
+                    onClick={(e) => {
+                      if (item.path === '/contact') {
+                        e.preventDefault();
+                        window.dispatchEvent(new CustomEvent('openConsultation'));
+                      }
+                    }}
+                    className="text-white/60 hover:text-white transition-colors text-[15px] font-light tracking-wide"
+                  >
+                    {item.name}
+                  </Link>
                 </li>
               ))}
             </ul>
@@ -54,7 +65,7 @@ const Footer = () => {
 
           {/* Column 3: Products */}
           <div>
-            <h4 className="text-[12px] tracking-[0.4em] uppercase font-black text-[#d89a5b] mb-10">Products</h4>
+            <h4 className="text-[12px] tracking-[0.4em] uppercase font-black text-[#d89a5b] mb-6">Products</h4>
             <ul className="space-y-4">
               {[
                 { name: "Civil & Electrical", path: "/products#civil" },
@@ -72,8 +83,8 @@ const Footer = () => {
 
           {/* Column 4: Contact */}
           <div className="col-span-2 lg:col-span-1">
-            <h4 className="text-[12px] tracking-[0.4em] uppercase font-black text-[#d89a5b] mb-10">Contact Us</h4>
-            <div className="space-y-8">
+            <h4 className="text-[12px] tracking-[0.4em] uppercase font-black text-[#d89a5b] mb-6">Contact Us</h4>
+            <div className="space-y-6">
               <div className="space-y-2">
                 <p className="text-white/40 text-[11px] uppercase tracking-widest font-medium">Call us at</p>
                 <a href="tel:080-69662251" className="text-xl font-medium tracking-tight hover:text-[#d89a5b] transition-colors block">080-69662251</a>
@@ -97,7 +108,7 @@ const Footer = () => {
         </div>
 
         {/* Divider & Copyright */}
-        <div className="pt-12 border-t border-white/10 flex flex-col md:flex-row items-center justify-between gap-6">
+        <div className="pt-8 border-t border-white/10 flex flex-col md:flex-row items-center justify-between gap-6">
           <p className="text-[11px] text-white/30 tracking-widest uppercase font-medium">
             © 2026 SA Interiors. All Rights Reserved
           </p>

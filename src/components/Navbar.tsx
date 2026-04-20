@@ -10,8 +10,21 @@ const Navbar = () => {
   const [mobileExpanded, setMobileExpanded] = useState<string | null>(null);
   const dropdownTimeout = useRef<NodeJS.Timeout | null>(null);
 
-  const solidPages = ["/products", "/about", "/testimonials", "/blog", "/contact"];
-  const isSolidPage = solidPages.includes(location.pathname);
+  const validPaths = [
+    "/",
+    "/home_interior",
+    "/kitchen-wardrobe",
+    "/about",
+    "/services",
+    "/products",
+    "/portfolio",
+    "/contact",
+    "/testimonials",
+    "/blog",
+    "/style-quiz"
+  ];
+
+  const isSolidPage = !validPaths.includes(location.pathname) || location.pathname === "/contact";
 
   useEffect(() => {
     const handleScroll = () => {
@@ -101,7 +114,7 @@ const Navbar = () => {
                 <div className="px-8 lg:px-16 py-12">
                   <div className="flex flex-col gap-6 max-w-xs">
                     {navLinks.commercial.map((item) => (
-                      <Link key={item.name} to={item.path} className="text-[15px] font-medium tracking-wide hover:text-[#d89a5b] transition-all">
+                      <Link key={item.name} to={item.path} className="text-[15px] font-medium tracking-wide hover:text-[#d89a5b] transition-all" onClick={() => setActiveDropdown(null)}>
                         {item.name}
                       </Link>
                     ))}
@@ -129,7 +142,7 @@ const Navbar = () => {
                 <div className="px-8 lg:px-16 py-12">
                   <div className="flex flex-col gap-6 max-w-xs">
                     {navLinks.products.map((item) => (
-                      <Link key={item.name} to={item.path} className="text-[15px] font-medium tracking-wide hover:text-[#d89a5b] transition-all">
+                      <Link key={item.name} to={item.path} className="text-[15px] font-medium tracking-wide hover:text-[#d89a5b] transition-all" onClick={() => setActiveDropdown(null)}>
                         {item.name}
                       </Link>
                     ))}
@@ -155,7 +168,18 @@ const Navbar = () => {
                 <div className="px-8 lg:px-16 py-12">
                   <div className="flex flex-col gap-6 max-w-xs">
                     {navLinks.company.map((item) => (
-                      <Link key={item.name} to={item.path} className="text-[15px] font-medium tracking-wide hover:text-[#d89a5b] transition-all">
+                      <Link 
+                        key={item.name} 
+                        to={item.path === '/contact' ? '#' : item.path} 
+                        onClick={(e) => {
+                          if (item.path === '/contact') {
+                            e.preventDefault();
+                            window.dispatchEvent(new CustomEvent('openConsultation'));
+                          }
+                          setActiveDropdown(null);
+                        }}
+                        className="text-[15px] font-medium tracking-wide hover:text-[#d89a5b] transition-all"
+                      >
                         {item.name}
                       </Link>
                     ))}
@@ -239,15 +263,32 @@ const Navbar = () => {
             </button>
             <div className={`flex flex-col gap-4 overflow-hidden transition-all duration-300 ${mobileExpanded === 'company' ? 'mt-6 max-h-[500px] opacity-100' : 'max-h-0 opacity-0'}`}>
               {navLinks.company.map(item => (
-                <Link key={item.name} to={item.path} className="text-[19px] pl-4 text-white/70 hover:text-white transition-colors" onClick={() => setMenuOpen(false)}>{item.name}</Link>
+                <Link 
+                  key={item.name} 
+                  to={item.path === '/contact' ? '#' : item.path} 
+                  className="text-[19px] pl-4 text-white/70 hover:text-white transition-colors" 
+                  onClick={(e) => {
+                    if (item.path === '/contact') {
+                      e.preventDefault();
+                      window.dispatchEvent(new CustomEvent('openConsultation'));
+                    }
+                    setMenuOpen(false);
+                  }}
+                >
+                  {item.name}
+                </Link>
               ))}
             </div>
           </div>
         </div>
 
         <Link
-          to="/contact"
-          onClick={() => setMenuOpen(false)}
+          to="#"
+          onClick={(e) => {
+            e.preventDefault();
+            setMenuOpen(false);
+            window.dispatchEvent(new CustomEvent('openConsultation'));
+          }}
           className="mt-auto w-full bg-[#965b32] text-white py-6 rounded-none text-center text-xs font-black tracking-[0.4em] uppercase shrink-0 transition-transform hover:scale-[1.02]"
         >
           Talk to us
