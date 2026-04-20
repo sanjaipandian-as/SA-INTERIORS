@@ -60,19 +60,23 @@ const Testimonials = () => {
   return (
     <div className="bg-white min-h-screen">
       {/* Hero Section */}
-      <section className="relative pt-40 pb-20 bg-[#F9F7F5] overflow-hidden">
-        {/* Decorative Grid */}
-        <div className="absolute inset-0 opacity-[0.03] pointer-events-none">
-          <div className="absolute inset-0" style={{ backgroundImage: 'radial-gradient(#002121 1px, transparent 1px)', backgroundSize: '40px 40px' }} />
+      <section className="relative w-full h-[60vh] min-h-[500px] flex items-center justify-center overflow-hidden">
+        {/* Background Image */}
+        <div className="absolute inset-0">
+          <img 
+            src="https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?w=1600&q=80" 
+            alt="Testimonials Hero" 
+            className="w-full h-full object-cover brightness-[0.4]" 
+          />
         </div>
         
-        <div className="container mx-auto px-6 relative z-10 text-center">
+        <div className="max-w-7xl mx-auto px-6 text-center relative z-10 pt-16">
           <ScrollReveal>
-            <p className="text-[#965b32] text-xs font-bold tracking-[0.5em] uppercase mb-4">Client Feedback</p>
-            <h1 className="text-5xl md:text-7xl font-sans font-light text-[#002121] mb-8 tracking-tighter leading-tight">
-              What Our <span className="font-bold">Clients Say</span>
+            <p className="text-[#d89a5b] text-[10px] md:text-xs font-bold tracking-[0.5em] uppercase mb-4 pl-[0.5em]">Client Feedback</p>
+            <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-sans font-bold text-white mb-8 tracking-[0.1em] md:tracking-[0.2em] leading-[1.1] uppercase pl-[0.1em] md:pl-[0.2em]">
+              What Our <br /> Clients Say
             </h1>
-            <p className="text-gray-500 max-w-2xl mx-auto text-lg font-light leading-relaxed">
+            <p className="text-white/80 text-[15px] md:text-xl max-w-3xl mx-auto font-medium leading-relaxed">
               Stories of transformation, trust, and the pursuit of excellence. Real experiences from homeowners across Tamil Nadu.
             </p>
           </ScrollReveal>

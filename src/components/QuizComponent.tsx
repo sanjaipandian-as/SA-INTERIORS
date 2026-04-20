@@ -217,7 +217,7 @@ const QuizComponent = () => {
               
               <div className="flex flex-col sm:flex-row gap-4">
                 <button
-                  onClick={() => window.location.href = '/contact'}
+                  onClick={() => window.dispatchEvent(new CustomEvent('openConsultation'))}
                   className="bg-[#d89a5b] text-white px-8 py-4 text-[11px] font-black tracking-[0.2em] uppercase hover:bg-white hover:text-[#002121] transition-all shadow-xl"
                 >
                   Get Started

@@ -155,7 +155,7 @@ const Portfolio = () => {
             <p className="text-[#d89a5b] text-[10px] md:text-xs font-bold tracking-[0.5em] uppercase mb-4">Start Your Journey</p>
             <h2 className="text-4xl md:text-6xl font-sans font-bold uppercase text-white mb-6 tracking-wide drop-shadow-md">Like What You See?</h2>
             <p className="text-white/80 text-lg md:text-xl font-medium max-w-xl mx-auto mb-10 drop-shadow-sm">Let's create something equally stunning for your space.</p>
-            <Link to="/contact" className="inline-flex items-center gap-3 bg-[#d89a5b] text-white px-10 py-5 text-[11px] font-black tracking-[0.3em] uppercase hover:bg-white hover:text-[#002121] transition-all duration-300 shadow-xl">
+            <Link to="#" onClick={(e) => { e.preventDefault(); window.dispatchEvent(new CustomEvent('openConsultation')); }} className="inline-flex items-center gap-3 bg-[#d89a5b] text-white px-10 py-5 text-[11px] font-black tracking-[0.3em] uppercase hover:bg-white hover:text-[#002121] transition-all duration-300 shadow-xl">
               Start Your Project <ArrowRight className="w-4 h-4" />
             </Link>
           </ScrollReveal>

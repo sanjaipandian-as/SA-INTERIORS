@@ -23,6 +23,72 @@ import { DeliveryIcon, CostsIcon, WarrantyIcon, EMIIcon, MDFIcon, EstimateIcon, 
 import BeforeAfterSlider from "@/components/BeforeAfterSlider";
 import QuizComponent from "@/components/QuizComponent";
 
+// Custom Architectural SVGs for Process
+const BriefSVG = ({ size = 48, className = "", style = {} }: { size?: number | string, className?: string, style?: any }) => (
+  <svg width={size} height={size} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" className={className} style={style}>
+    <path d="M4 4V20H20V8L16 4H4Z" stroke="currentColor" strokeWidth="1.2" strokeLinejoin="round"/>
+    <path d="M16 4V8H20" stroke="currentColor" strokeWidth="1.2" strokeLinejoin="round"/>
+    <path d="M8 12H16" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round"/>
+    <path d="M8 16H13" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round"/>
+    <rect x="7" y="11" width="1" height="1" fill="currentColor"/>
+    <rect x="7" y="15" width="1" height="1" fill="currentColor"/>
+  </svg>
+);
+
+const VisitSVG = ({ size = 48, className = "", style = {} }: { size?: number | string, className?: string, style?: any }) => (
+  <svg width={size} height={size} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" className={className} style={style}>
+    <path d="M3 21H21" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round"/>
+    <path d="M5 21V8L12 3L19 8V21" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round"/>
+    <path d="M9 21V15H15V21" stroke="currentColor" strokeWidth="1.2"/>
+    <path d="M12 3V21" stroke="currentColor" strokeWidth="0.5" strokeDasharray="2 2"/>
+    <circle cx="12" cy="11" r="2" stroke="currentColor" strokeWidth="1.2"/>
+  </svg>
+);
+
+const DesignSVG = ({ size = 48, className = "", style = {} }: { size?: number | string, className?: string, style?: any }) => (
+  <svg width={size} height={size} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" className={className} style={style}>
+    <path d="M12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22Z" stroke="currentColor" strokeWidth="0.8" strokeDasharray="1 3"/>
+    <path d="M12 12L19 19" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round"/>
+    <path d="M5 5L12 12" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round"/>
+    <path d="M12 4V20" stroke="currentColor" strokeWidth="0.5"/>
+    <path d="M4 12H20" stroke="currentColor" strokeWidth="0.5"/>
+    <rect x="10" y="10" width="4" height="4" stroke="currentColor" strokeWidth="1.2" rotate="45"/>
+  </svg>
+);
+
+const MaterialSVG = ({ size = 48, className = "", style = {} }: { size?: number | string, className?: string, style?: any }) => (
+  <svg width={size} height={size} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" className={className} style={style}>
+    <path d="M4 7H20V17H4V7Z" stroke="currentColor" strokeWidth="1.2"/>
+    <path d="M7 4H17V7H7V4Z" stroke="currentColor" strokeWidth="1.2"/>
+    <path d="M4 12H20" stroke="currentColor" strokeWidth="1.2"/>
+    <path d="M12 7V17" stroke="currentColor" strokeWidth="1.2"/>
+    <circle cx="8" cy="9.5" r="1" fill="currentColor"/>
+    <circle cx="16" cy="14.5" r="1" fill="currentColor"/>
+  </svg>
+);
+
+const ProductionSVG = ({ size = 48, className = "", style = {} }: { size?: number | string, className?: string, style?: any }) => (
+  <svg width={size} height={size} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" className={className} style={style}>
+    <path d="M2 12H22" stroke="currentColor" strokeWidth="0.5" strokeDasharray="1 2"/>
+    <path d="M12 2V22" stroke="currentColor" strokeWidth="0.5" strokeDasharray="1 2"/>
+    <path d="M7 7L17 17" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round"/>
+    <path d="M17 7L7 17" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round"/>
+    <rect x="5" y="5" width="14" height="14" stroke="currentColor" strokeWidth="1.2"/>
+    <circle cx="12" cy="12" r="3" stroke="currentColor" strokeWidth="1.2" fill="none"/>
+  </svg>
+);
+
+const HandoverSVG = ({ size = 48, className = "", style = {} }: { size?: number | string, className?: string, style?: any }) => (
+  <svg width={size} height={size} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" className={className} style={style}>
+    <path d="M12 2L3 10V21H21V10L12 2Z" stroke="currentColor" strokeWidth="1.2" strokeLinejoin="round"/>
+    <path d="M12 11V16" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round"/>
+    <path d="M9 14H15" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round"/>
+    <path d="M4 14L10 14" stroke="currentColor" strokeWidth="0.5" strokeDasharray="2 2"/>
+    <path d="M14 14L20 14" stroke="currentColor" strokeWidth="0.5" strokeDasharray="2 2"/>
+    <circle cx="12" cy="7" r="1.5" fill="currentColor"/>
+  </svg>
+);
+
 // Preload heavy hero assets to drastically reduce LCP lag without altering original image paths
 if (typeof window !== "undefined") {
   const heroPreload1 = new Image();
@@ -100,43 +166,43 @@ const steps = [
     number: "01",
     title: "UNDERSTANDING THE REQUIREMENT / BRIEF",
     desc: "We understand your exact needs and project expectations clearly.",
-    icon: MessageSquare,
-    color: "#FF5252"
+    icon: BriefSVG,
+    color: "#d89a5b" // Deep Bronze
   },
   {
     number: "02",
     title: "FREE SITE VISIT & CONSULTATION",
     desc: "Our experts visit your site and provide detailed consultation.",
-    icon: MapPin,
-    color: "#2196F3"
+    icon: VisitSVG,
+    color: "#7d8c7c" // Muted Sage
   },
   {
     number: "03",
     title: "TAILOR MADE CONCEPTS & DESIGN",
     desc: "Customised design concepts crafted specially for you.",
-    icon: Compass,
-    color: "#00E676"
+    icon: DesignSVG,
+    color: "#647d8e" // Blueprint Blue
   },
   {
     number: "04",
     title: "MATERIAL SELECTION",
     desc: "We help you select high quality and durable materials.",
-    icon: Layers,
-    color: "#FFD600"
+    icon: MaterialSVG,
+    color: "#8e6f64" // Warm Terracotta
   },
   {
     number: "05",
     title: "PRODUCTION & QC CHECK",
     desc: "Strict quality checks during production process.",
-    icon: Hammer,
-    color: "#9C27B0"
+    icon: ProductionSVG,
+    color: "#5c5c5c" // Industrial Slate
   },
   {
     number: "06",
     title: "HANDOVER IN 45 DAYS",
     desc: "Timely delivery and complete handover of the project.",
-    icon: Sparkles,
-    color: "#FF9100"
+    icon: HandoverSVG,
+    color: "#a58d62" // Antique Brass
   }
 ];
 
@@ -408,7 +474,11 @@ const Index = () => {
                       className="flex flex-col sm:flex-row flex-wrap items-start sm:items-center gap-4"
                     >
                       <Link
-                        to="/contact"
+                        to="#"
+                        onClick={(e) => {
+                          e.preventDefault();
+                          window.dispatchEvent(new CustomEvent('openConsultation'));
+                        }}
                         className="bg-[#965b32] text-white px-10 py-4 rounded-none text-[11px] font-black tracking-[0.2em] uppercase hover:bg-white hover:text-[#002121] transition-all transform hover:scale-105 w-full sm:w-auto text-center"
                       >
                         Start your project
@@ -632,7 +702,7 @@ const Index = () => {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {/* Residential */}
             <ScrollReveal delay={0.1}>
-              <Link to="/residential" className="group relative aspect-[4/5] overflow-hidden bg-[#002121] block">
+              <Link to="/portfolio?category=Residential" className="group relative aspect-[4/5] overflow-hidden bg-[#002121] block">
                 <img
                   src="https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?w=800&q=80"
                   alt="Residential"
@@ -648,7 +718,7 @@ const Index = () => {
 
             {/* Commercial */}
             <ScrollReveal delay={0.2}>
-              <Link to="/commercial" className="group relative aspect-[4/5] overflow-hidden bg-[#002121] block">
+              <Link to="/portfolio?category=Commercial" className="group relative aspect-[4/5] overflow-hidden bg-[#002121] block">
                 <img
                   src="https://images.unsplash.com/photo-1497366216548-37526070297c?w=800&q=80"
                   alt="Commercial"
@@ -664,7 +734,7 @@ const Index = () => {
 
             {/* Hospitality */}
             <ScrollReveal delay={0.3}>
-              <Link to="/hospitality" className="group relative aspect-[4/5] overflow-hidden bg-[#002121] block">
+              <Link to="/portfolio?category=Hospitality" className="group relative aspect-[4/5] overflow-hidden bg-[#002121] block">
                 <img
                   src="https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?w=800&q=80"
                   alt="Hospitality"
@@ -860,14 +930,15 @@ const Index = () => {
       <section className="pt-16 pb-20 bg-white relative overflow-hidden">
         <div className="max-w-[1600px] mx-auto px-6 md:px-12 relative z-10">
 
-          <div className="mb-20">
+          <div className="mb-20 text-center">
             <motion.h2
-              initial={{ opacity: 0, x: -20 }}
-              whileInView={{ opacity: 1, x: 0 }}
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
               transition={{ duration: 0.8 }}
-              className="text-3xl md:text-4xl font-sans font-medium text-gray-800 tracking-tight"
+              className="text-3xl md:text-5xl font-sans font-medium text-gray-800 tracking-tight"
             >
-              Why Chennai Homeowners Trust SA Interiors
+              Why Chennai Homeowners <span className="text-[#d89a5b]">Trust SA Interiors</span>
             </motion.h2>
           </div>
 
@@ -875,9 +946,10 @@ const Index = () => {
             {trustItems.map((item, idx) => (
               <motion.div
                 key={idx}
-                initial={{ opacity: 0, y: 20 }}
+                initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: idx * 0.1 }}
+                viewport={{ once: true, amount: 0.1 }}
+                transition={{ duration: 0.5, delay: idx * 0.08 }}
                 className="flex flex-col items-center text-center group"
               >
                 <div className="h-32 flex items-center justify-center mb-6 transform group-hover:scale-105 transition-transform duration-500">
@@ -1027,27 +1099,42 @@ const Index = () => {
       </section>
 
       {/* Final CTA - Luxury Modern Minimalist */}
-      <section className="pt-10 pb-20 bg-white relative overflow-hidden border-t border-gray-50">
-        {/* Decorative architectural line */}
-        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[1px] h-20 bg-gradient-to-b from-[#d89a5b] to-transparent" />
+      <section className="relative py-8 md:py-10 overflow-hidden">
+        {/* Background Image with Overlay */}
+        <div className="absolute inset-0 z-0">
+          <img 
+            src="https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?w=1600&q=80" 
+            alt="Luxury Interior Living Room" 
+            className="w-full h-full object-cover"
+          />
+          <div className="absolute inset-0 bg-black/60"></div>
+        </div>
 
         <div className="container mx-auto px-6 relative z-10 text-center">
           <ScrollReveal>
-            <h2 className="text-5xl md:text-[70px] font-sans font-light text-[#002121] mb-8 tracking-tighter leading-[1.1]">
-              Ready to See Your <br />
-              <span className="font-bold">Space Come Alive?</span>
-            </h2>
-            <p className="text-gray-500 max-w-2xl mx-auto mb-14 text-lg md:text-xl font-light leading-relaxed">
+            <div className="flex flex-col items-center mb-6">
+              <h2 className="text-4xl md:text-[65px] font-black text-white mb-4 tracking-tighter leading-[0.95] uppercase flex flex-col items-center">
+                <span>Ready to See Your</span>
+                <span className="text-[#d89a5b]">Space Come Alive?</span>
+              </h2>
+              <div className="w-16 h-[1px] bg-white/30 my-5" />
+            </div>
+            
+            <p className="text-white/60 max-w-2xl mx-auto mb-8 text-base md:text-lg font-light leading-relaxed tracking-wide">
               Get a free consultation and a design plan crafted just for you, <br className="hidden md:block" />
-              <span className="text-[#d89a5b] font-medium italic">within 24 hours.</span>
+              <span className="text-white font-medium italic underline decoration-[#d89a5b] underline-offset-4">within 24 hours.</span>
             </p>
 
             <Link
-              to="/contact"
-              className="group relative inline-flex items-center gap-6 bg-[#002121] text-white px-14 py-6 text-[11px] font-black tracking-[0.3em] uppercase hover:bg-[#d89a5b] transition-all duration-700 shadow-[0_20px_60px_rgba(0,0,0,0.1)] hover:shadow-[0_20px_60px_rgba(216,154,91,0.2)]"
+              to="#"
+              onClick={(e) => {
+                e.preventDefault();
+                window.dispatchEvent(new CustomEvent('openConsultation'));
+              }}
+              className="group relative inline-flex items-center gap-6 bg-[#d89a5b] text-white px-10 py-5 text-[10px] font-black tracking-[0.3em] uppercase hover:bg-white hover:text-[#002121] transition-all duration-700 shadow-2xl"
             >
               <span className="relative z-10">Get Started for Free</span>
-              <ArrowRight className="w-5 h-5 relative z-10 group-hover:translate-x-3 transition-transform duration-500" />
+              <ArrowRight className="w-4 h-4 relative z-10 group-hover:translate-x-3 transition-transform duration-500" />
             </Link>
           </ScrollReveal>
         </div>

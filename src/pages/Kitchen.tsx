@@ -138,16 +138,15 @@ export default function Kitchen() {
         {slides.map((slide, index) => (
           <div
             key={slide.id}
-            className={`absolute inset-0 transition-opacity duration-1000 ease-in-out ${
-              current === index ? "opacity-100" : "opacity-0"
-            }`}
+            className={`absolute inset-0 transition-opacity duration-1000 ease-in-out ${current === index ? "opacity-100" : "opacity-0"
+              }`}
           >
-            <img 
-              src={slide.image} 
+            <img
+              src={slide.image}
               alt={slide.title}
               className="w-full h-full object-cover"
             />
-            <div className="absolute inset-0 bg-black/50"></div>
+            <div className="absolute inset-0 bg-black/60"></div>
           </div>
         ))}
 
@@ -165,7 +164,7 @@ export default function Kitchen() {
             <button onClick={() => window.dispatchEvent(new CustomEvent("openConsultation"))} className="w-full sm:w-auto px-8 py-4 bg-[#d89a5b] text-white text-[11px] font-black tracking-[0.2em] uppercase hover:bg-white hover:text-[#002121] transition-all rounded-none drop-shadow-md text-center">
               Book Consultation
             </button>
-            <button onClick={() => window.location.href = '/portfolio'} className="w-full sm:w-auto px-8 py-4 border border-white text-white text-[11px] font-black tracking-[0.2em] uppercase hover:bg-white hover:text-[#002121] transition-all rounded-none drop-shadow-md text-center bg-transparent">
+            <button onClick={() => navigate('/portfolio')} className="w-full sm:w-auto px-8 py-4 border border-white text-white text-[11px] font-black tracking-[0.2em] uppercase hover:bg-white hover:text-[#002121] transition-all rounded-none drop-shadow-md text-center bg-transparent">
               View Portfolio
             </button>
           </div>
@@ -191,9 +190,8 @@ export default function Kitchen() {
             <div
               key={index}
               onClick={() => setCurrent(index)}
-              className={`h-2 rounded-full cursor-pointer transition-all duration-300 ${
-                current === index ? "w-8 bg-[#d89a5b]" : "w-2 bg-white/50 hover:bg-white/80"
-              }`}
+              className={`h-2 rounded-full cursor-pointer transition-all duration-300 ${current === index ? "w-8 bg-[#d89a5b]" : "w-2 bg-white/50 hover:bg-white/80"
+                }`}
             />
           ))}
         </div>
@@ -204,29 +202,23 @@ export default function Kitchen() {
         <div className="max-w-7xl mx-auto">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
             <div className="order-2 lg:order-1">
-              <BeforeAfterSlider 
+              <BeforeAfterSlider
                 beforeImage="/before.webp"
                 afterImage="/after.webp"
                 brandName="SA"
                 className="shadow-[0_20px_50px_rgba(0,0,0,0.1)]"
               />
             </div>
-            
+
             <div className="order-1 lg:order-2 flex flex-col items-center lg:items-start text-center lg:text-left sm:px-6 lg:px-0">
-              <motion.p
-                initial={{ opacity: 0, x: 20 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                className="text-[#d89a5b] text-[10px] tracking-[0.4em] uppercase font-bold mb-4"
-              >
-                A Seamless Experience
-              </motion.p>
+              
               <h2 className="text-[32px] sm:text-4xl md:text-5xl font-serif text-[#002121] uppercase tracking-wide leading-[1.2] mb-6 md:mb-8">
                 Transforming Spaces with Precision
               </h2>
               <p className="text-gray-600 text-base md:text-lg leading-relaxed mb-10 max-w-lg lg:max-w-none">
                 Our modular setups combine immaculate storage solutions with compelling designs. Experience precision engineering meant to elevate the aesthetic and practical heart of your home.
               </p>
-              
+
               <div className="space-y-6 w-full max-w-sm lg:max-w-none">
                 <div className="flex flex-col lg:flex-row items-center lg:items-center gap-3 lg:gap-4 border-b-2 lg:border-b-0 lg:border-l-2 border-[#d89a5b]/20 pb-4 lg:pb-0 lg:pl-6 py-2 text-center lg:text-left">
                   <div className="w-10 h-10 rounded-full bg-white flex items-center justify-center text-[#d89a5b] shadow-sm shrink-0">
@@ -256,7 +248,7 @@ export default function Kitchen() {
       {/* Why Choose Us */}
       <section className="bg-[#f6f3f2] py-24 px-6">
         <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
-          
+
           {/* LEFT SIDE */}
           <div>
             <p className="text-[#d89a5b] text-[10px] tracking-[0.5em] uppercase font-bold mb-4">
@@ -294,7 +286,7 @@ export default function Kitchen() {
             </div>
 
             {/* CTA BUTTON */}
-            <button onClick={() => window.location.href = '/portfolio'} className="mt-12 inline-flex items-center gap-3 bg-[#002121] text-white px-8 py-5 text-[11px] font-black tracking-[0.2em] uppercase hover:bg-[#d89a5b] transition-all shadow-xl">
+            <button onClick={() => navigate('/portfolio')} className="mt-12 inline-flex items-center gap-3 bg-[#002121] text-white px-8 py-5 text-[11px] font-black tracking-[0.2em] uppercase hover:bg-[#d89a5b] transition-all shadow-xl">
               View Similar Projects
               <ArrowRight className="w-4 h-4" />
             </button>
@@ -302,8 +294,8 @@ export default function Kitchen() {
 
           {/* RIGHT SIDE IMAGE */}
           <div className="w-full h-full min-h-[500px] lg:min-h-[700px] rounded-none overflow-hidden relative shadow-xl">
-            <img 
-              src="https://i.pinimg.com/736x/71/61/8a/71618a99e90a7def78dd4e8416e51b83.jpg" 
+            <img
+              src="https://i.pinimg.com/736x/71/61/8a/71618a99e90a7def78dd4e8416e51b83.jpg"
               alt="Beautiful Kitchen Interior"
               className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 hover:scale-105"
             />
@@ -348,13 +340,13 @@ export default function Kitchen() {
             READY TO DESIGN YOUR DREAM KITCHEN?
           </h2>
           <p className="text-gray-500 text-lg md:text-xl font-medium mb-16 max-w-2xl mx-auto leading-relaxed">
-            Secure a fully transparent, personalized estimate for your new kitchen and wardrobe spaces. 
+            Secure a fully transparent, personalized estimate for your new kitchen and wardrobe spaces.
           </p>
           <div className="flex flex-col md:flex-row items-center justify-center gap-6">
             <button onClick={() => window.dispatchEvent(new CustomEvent("openConsultation"))} className="bg-[#002121] text-white px-12 py-5 text-[11px] font-black tracking-[0.3em] uppercase hover:bg-[#d89a5b] transition-all shadow-xl">
               Get Free Estimate
             </button>
-            <button onClick={() => window.location.href='/contact'} className="border border-gray-200 text-[#002121] px-12 py-5 text-[11px] font-black tracking-[0.3em] uppercase hover:border-[#002121] transition-all">
+            <button onClick={() => window.dispatchEvent(new CustomEvent("openConsultation"))} className="border border-gray-200 text-[#002121] px-12 py-5 text-[11px] font-black tracking-[0.3em] uppercase hover:border-[#002121] transition-all">
               Talk to an Expert
             </button>
           </div>

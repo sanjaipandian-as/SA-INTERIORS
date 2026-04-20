@@ -6,7 +6,7 @@ import {
   PencilRuler,
   Hammer,
   CheckSquare,
-   User,
+  User,
   Settings,
   DollarSign,
   ShieldCheck,
@@ -14,6 +14,7 @@ import {
   Handshake,
   ArrowRight,
 } from "lucide-react";
+import { useNavigate } from "react-router-dom";
 
 
 const features = [
@@ -115,6 +116,7 @@ const slides = [
 
 export default function HomeInterior() {
   const [current, setCurrent] = useState(0);
+  const navigate = useNavigate();
 
   // Auto slide every 4 seconds
   useEffect(() => {
@@ -135,201 +137,209 @@ export default function HomeInterior() {
 
   return (
     <>
-    <section className="w-full h-[80vh] min-h-[600px] relative overflow-hidden flex items-center">
-      {/* Background Images */}
-      {slides.map((slide, index) => (
-        <div
-          key={slide.id}
-          className={`absolute inset-0 transition-opacity duration-1000 ease-in-out ${
-            current === index ? "opacity-100" : "opacity-0"
-          }`}
-        >
-          <img 
-            src={slide.image} 
-            alt={slide.title}
-            className="w-full h-full object-cover"
-          />
-          <div className="absolute inset-0 bg-black/50"></div>
-        </div>
-      ))}
-
-      <div className="relative z-10 max-w-5xl mx-auto text-center px-6 transition-all duration-700 ease-in-out pt-16">
-        <h1 className="text-4xl md:text-6xl font-serif text-white mb-6 drop-shadow-md">
-          {slides[current].title}
-        </h1>
-
-        <p className="text-white/90 text-lg md:text-xl mb-10 drop-shadow max-w-2xl mx-auto">
-          {slides[current].subtitle}
-        </p>
-
-        <div className="flex flex-wrap justify-center gap-4">
-          <button onClick={() => window.dispatchEvent(new CustomEvent("openConsultation"))} className="px-8 py-4 bg-[#d89a5b] text-white text-[11px] font-black tracking-[0.2em] uppercase hover:bg-white hover:text-[#002121] transition-all rounded-none drop-shadow-md">
-            Book Consultation
-          </button>
-          <button onClick={() => window.location.href = '/portfolio'} className="px-8 py-4 border border-white text-white text-[11px] font-black tracking-[0.2em] uppercase hover:bg-white hover:text-[#002121] transition-all rounded-none drop-shadow-md">
-            View Portfolio
-          </button>
-        </div>
-      </div>
-
-      {/* Navigation Arrows */}
-      <button
-        onClick={prevSlide}
-        className="absolute left-5 top-1/2 -translate-y-1/2 bg-white/10 hover:bg-white/20 text-white backdrop-blur-md px-4 py-2 rounded-full transition-all"
-      >
-        ←
-      </button>
-
-      <button
-        onClick={nextSlide}
-        className="absolute right-5 top-1/2 -translate-y-1/2 bg-white/10 hover:bg-white/20 text-white backdrop-blur-md px-4 py-2 rounded-full transition-all"
-      >
-        →
-      </button>
-
-      {/* Dots */}
-      <div className="absolute bottom-10 w-full flex justify-center gap-3">
-        {slides.map((_, index) => (
+      <section className="w-full h-[70vh] min-h-[500px] relative overflow-hidden flex items-center">
+        {/* Background Images */}
+        {slides.map((slide, index) => (
           <div
-            key={index}
-            onClick={() => setCurrent(index)}
-            className={`h-2 rounded-full cursor-pointer transition-all duration-300 ${
-              current === index ? "w-8 bg-[#d89a5b]" : "w-2 bg-white/50 hover:bg-white/80"
-            }`}
-          />
-        ))}
-      </div>
-    </section>
-
-     <section className="bg-[#f6f3f2] py-24 px-6">
-      <div className="max-w-7xl mx-auto text-center">
-        {/* Small Heading */}
-        <p className="uppercase tracking-widest text-gray-500 text-sm mb-3">
-          How We Work
-        </p>
-
-        {/* Main Heading */}
-        <h2 className="text-4xl md:text-5xl font-serif text-gray-800 mb-16">
-          How We Work
-        </h2>
-
-        {/* Steps */}
-        <div className="relative">
-          {/* Horizontal Line */}
-          <div className="hidden md:block absolute top-10 left-0 w-full h-[1px] bg-gray-300"></div>
-
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-12 relative">
-            {steps.map((step, index) => {
-              const Icon = step.icon;
-              return (
-                <div key={index} className="flex flex-col items-center text-center relative">
-                  
-                  {/* Icon Circle */}
-                  <div className="w-20 h-20 rounded-full bg-white shadow-sm border border-gray-200 flex items-center justify-center z-10">
-                    <Icon className="w-8 h-8 text-gray-600" />
-                  </div>
-
-                  {/* Title */}
-                  <h3 className="mt-6 text-lg font-medium text-gray-800 whitespace-pre-line">
-                    {step.title}
-                  </h3>
-
-                  {/* Description */}
-                  <p className="mt-3 text-sm text-gray-500 max-w-[180px]">
-                    {step.description}
-                  </p>
-                </div>
-              );
-            })}
+            key={slide.id}
+            className={`absolute inset-0 transition-opacity duration-1000 ease-in-out ${current === index ? "opacity-100" : "opacity-0"
+              }`}
+          >
+            <img
+              src={slide.image}
+              alt={slide.title}
+              className="w-full h-full object-cover"
+            />
+            <div className="absolute inset-0 bg-black/50"></div>
           </div>
-        </div>
-      </div>
-    </section>
+        ))}
 
+        <div className="relative z-10 max-w-5xl mx-auto text-center px-6 transition-all duration-700 ease-in-out pt-16">
+          <h1 className="text-4xl md:text-6xl font-serif text-white mb-6 drop-shadow-md">
+            {slides[current].title}
+          </h1>
 
-     <section className="bg-[#f6f3f2] py-24 px-6">
-      <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
-        
-        {/* LEFT SIDE */}
-        <div>
-          <p className="uppercase tracking-widest text-gray-500 text-sm mb-3">
-            Why Choose Us
+          <p className="text-white/90 text-lg md:text-xl mb-10 drop-shadow max-w-2xl mx-auto">
+            {slides[current].subtitle}
           </p>
 
-          <h2 className="text-4xl md:text-5xl font-serif text-gray-800 mb-6">
-            Why Choose Us
+          <div className="flex flex-wrap justify-center gap-4">
+            <button onClick={() => window.dispatchEvent(new CustomEvent("openConsultation"))} className="px-8 py-4 bg-[#d89a5b] text-white text-[11px] font-black tracking-[0.2em] uppercase hover:bg-white hover:text-[#002121] transition-all rounded-none drop-shadow-md">
+              Book Consultation
+            </button>
+            <button onClick={() => navigate('/portfolio')} className="px-8 py-4 border border-white text-white text-[11px] font-black tracking-[0.2em] uppercase hover:bg-white hover:text-[#002121] transition-all rounded-none drop-shadow-md">
+              View Portfolio
+            </button>
+          </div>
+        </div>
+
+        {/* Navigation Arrows */}
+        <button
+          onClick={prevSlide}
+          className="absolute left-5 top-1/2 -translate-y-1/2 bg-white/10 hover:bg-white/20 text-white backdrop-blur-md px-4 py-2 rounded-full transition-all"
+        >
+          ←
+        </button>
+
+        <button
+          onClick={nextSlide}
+          className="absolute right-5 top-1/2 -translate-y-1/2 bg-white/10 hover:bg-white/20 text-white backdrop-blur-md px-4 py-2 rounded-full transition-all"
+        >
+          →
+        </button>
+
+        {/* Dots */}
+        <div className="absolute bottom-10 w-full flex justify-center gap-3">
+          {slides.map((_, index) => (
+            <div
+              key={index}
+              onClick={() => setCurrent(index)}
+              className={`h-2 rounded-full cursor-pointer transition-all duration-300 ${current === index ? "w-8 bg-[#d89a5b]" : "w-2 bg-white/50 hover:bg-white/80"
+                }`}
+            />
+          ))}
+        </div>
+      </section>
+
+      <section className="bg-[#f6f3f2] py-20 px-6">
+        <div className="max-w-7xl mx-auto text-center">
+          {/* Small Heading */}
+          <p className="uppercase tracking-widest text-gray-500 text-sm mb-2">
+            How We Work
+          </p>
+
+          {/* Main Heading */}
+          <h2 className="text-4xl md:text-5xl font-serif text-gray-800 mb-12">
+            How We Work
           </h2>
 
-          <p className="text-gray-600 mb-10 max-w-xl leading-relaxed">
-            We blend aesthetic elegance with functional precision to create homes that are uniquely yours. Our turnkey process removes all the stress, giving you a seamless journey from the initial concept to the final handover.
-          </p>
+          {/* Steps */}
+          <div className="relative">
+            {/* Horizontal Line */}
+            <div className="hidden md:block absolute top-10 left-0 w-full h-[1px] bg-gray-300"></div>
 
-          {/* FEATURES */}
-          <div className="space-y-6">
-            {features.map((feature, index) => {
-              const Icon = feature.icon;
-              return (
-                <div key={index} className="flex items-start gap-4">
-                  <Icon className="w-6 h-6 text-gray-600 mt-1" />
-                  <div>
-                    <h4 className="font-medium text-gray-800">
-                      {feature.title}
-                    </h4>
-                    <p className="text-gray-500 text-sm">
-                      {feature.desc}
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-12 relative">
+              {steps.map((step, index) => {
+                const Icon = step.icon;
+                return (
+                  <div key={index} className="flex flex-col items-center text-center relative">
+
+                    {/* Icon Circle */}
+                    <div className="w-20 h-20 rounded-full bg-white shadow-sm border border-gray-200 flex items-center justify-center z-10">
+                      <Icon className="w-8 h-8 text-gray-600" />
+                    </div>
+
+                    {/* Title */}
+                    <h3 className="mt-6 text-lg font-medium text-gray-800 whitespace-pre-line">
+                      {step.title}
+                    </h3>
+
+                    {/* Description */}
+                    <p className="mt-3 text-sm text-gray-500 max-w-[180px]">
+                      {step.description}
                     </p>
                   </div>
-                </div>
-              );
-            })}
+                );
+              })}
+            </div>
+          </div>
+        </div>
+      </section>
+
+
+      <section className="bg-[#f6f3f2] py-20 px-6">
+        <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-14 items-start">
+
+          {/* LEFT SIDE */}
+          <div>
+
+
+            <h2 className="text-4xl md:text-5xl font-serif text-gray-800 mb-4">
+              Why Choose Us
+            </h2>
+
+            <p className="text-gray-600 mb-8 max-w-xl leading-snug">
+              We blend aesthetic elegance with functional precision to create homes that are uniquely yours. Our turnkey process removes all the stress, giving you a seamless journey from the initial concept to the final handover.
+            </p>
+
+            {/* FEATURES */}
+            <div className="space-y-4">
+              {features.map((feature, index) => {
+                const Icon = feature.icon;
+                return (
+                  <div key={index} className="flex items-start gap-4">
+                    <Icon className="w-6 h-6 text-gray-600 mt-1" />
+                    <div>
+                      <h4 className="font-medium text-gray-800">
+                        {feature.title}
+                      </h4>
+                      <p className="text-gray-500 text-sm">
+                        {feature.desc}
+                      </p>
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+
+            {/* CTA BUTTON */}
+            <button onClick={() => navigate('/portfolio')} className="mt-8 inline-flex items-center gap-3 bg-[#002121] text-white px-8 py-4 rounded-none text-[11px] font-black tracking-[0.2em] uppercase hover:bg-[#d89a5b] transition-all">
+              View Similar Projects
+              <ArrowRight className="w-4 h-4" />
+            </button>
           </div>
 
-          {/* CTA BUTTON */}
-          <button onClick={() => window.location.href = '/portfolio'} className="mt-10 inline-flex items-center gap-3 bg-[#002121] text-white px-8 py-4 rounded-none text-[11px] font-black tracking-[0.2em] uppercase hover:bg-[#d89a5b] transition-all">
-            View Similar Projects
-            <ArrowRight className="w-4 h-4" />
+          {/* RIGHT SIDE IMAGE */}
+          <div className="w-full h-[400px] md:h-[600px] rounded-none overflow-hidden relative shadow-xl">
+            <img
+              src="https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?w=800&q=80"
+              alt="Beautiful Home Interior"
+              className="w-full h-full object-cover transition-transform duration-700 hover:scale-105"
+            />
+          </div>
+        </div>
+      </section>
+
+
+
+      <section className="relative py-16 md:py-20 px-6 text-center overflow-hidden">
+        {/* Background Image with Overlay */}
+        <div className="absolute inset-0 z-0">
+          <img
+            src="https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?w=1600&q=80"
+            alt="Luxury Interior Background"
+            className="w-full h-full object-cover"
+          />
+          <div className="absolute inset-0 bg-black/60"></div>
+        </div>
+
+        <div className="max-w-4xl mx-auto relative z-10">
+          {/* Small Label */}
+          <p className="uppercase tracking-[0.5em] text-[#d89a5b] text-[11px] font-black mb-4">
+            Get Started
+          </p>
+
+          {/* Main Heading */}
+          <h2 className="text-4xl md:text-7xl font-bold text-white mb-6 tracking-tight leading-[1.1]">
+            Ready to transform <br /><span className="font-bold">your perfect home?</span>
+          </h2>
+
+          {/* Description */}
+          <p className="text-white/70 text-lg md:text-xl font-light leading-relaxed mb-10 max-w-2xl mx-auto">
+            Schedule a free consultation with our design experts today and take the first step towards your dream space.
+          </p>
+
+          {/* CTA Button */}
+          <button
+            onClick={() => window.dispatchEvent(new CustomEvent("openConsultation"))}
+            className="group inline-flex items-center gap-6 bg-[#d89a5b] text-white px-12 py-5 rounded-none text-[11px] font-black tracking-[0.3em] uppercase hover:bg-white hover:text-[#002121] transition-all duration-500 shadow-2xl"
+          >
+            Get My Free Estimate
+            <ArrowRight className="w-5 h-5 transition-transform duration-500 group-hover:translate-x-2" />
           </button>
         </div>
+      </section>
+    </>
 
-        {/* RIGHT SIDE IMAGE */}
-        <div className="w-full h-[400px] md:h-[600px] rounded-none overflow-hidden relative shadow-xl">
-          <img 
-            src="https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?w=800&q=80" 
-            alt="Beautiful Home Interior"
-            className="w-full h-full object-cover transition-transform duration-700 hover:scale-105"
-          />
-        </div>
-      </div>
-    </section>
-
-
-
-        <section className="bg-[#f6f3f2] py-28 px-6 text-center">
-      <div className="max-w-3xl mx-auto">
-        
-        {/* Small Label */}
-        <p className="uppercase tracking-widest text-gray-500 text-sm mb-4">
-          Get Quote
-        </p>
-
-        {/* Main Heading */}
-        <h2 className="text-4xl md:text-5xl font-serif text-gray-800 mb-6">
-          Ready to transform your home?
-        </h2>
-
-        {/* Description */}
-        <p className="text-gray-600 text-lg leading-relaxed mb-10">
-          Schedule a free consultation with our design experts today and take the first step towards your dream space. We're here to help bring your vision to life.
-        </p>
-
-        {/* CTA Button */}
-        <button onClick={() => window.dispatchEvent(new CustomEvent("openConsultation"))} className="inline-flex items-center gap-3 bg-[#d89a5b] text-white px-8 py-4 rounded-none text-[11px] font-black tracking-[0.2em] uppercase hover:bg-[#002121] transition-all duration-300 shadow-xl">
-          Get an Estimate
-          <ArrowRight className="w-4 h-4" />
-        </button>
-      </div>
-    </section>
-</>
-    
   );
 }

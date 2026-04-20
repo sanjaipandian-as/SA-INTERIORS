@@ -142,7 +142,11 @@ const StyleQuiz = () => {
 
             <div className="flex flex-wrap gap-4">
               <Link
-                to="/contact"
+                to="#"
+                onClick={(e) => {
+                  e.preventDefault();
+                  window.dispatchEvent(new CustomEvent('openConsultation'));
+                }}
                 className="inline-flex items-center gap-2 bg-primary text-primary-foreground px-7 py-3.5 rounded-full text-xs font-semibold tracking-widest uppercase hover:opacity-90 transition-opacity"
               >
                 Get a Personalized Design <ArrowRight className="w-4 h-4" />
