@@ -27,7 +27,7 @@ const productsData = [
       { tier: "PREMIUM", name: "Complete Package", price: "₹75 per sqft", includes: "Concealed wiring, branded CP fittings, waterproofing and full civil modifications" },
       { tier: "CUSTOM", name: "Full Execution", price: "On Quote", includes: "Smart wiring, premium brands, full layout changes and heavy civil work" }
     ],
-    deckPrice: "From ₹45/sqft",
+    deckPrice: "BOQ Based",
     number: "01"
   },
   {
@@ -129,7 +129,7 @@ const productsData = [
     pricing: [
       { tier: "STANDARD", name: "Essential Woodwork", price: "₹850 per sqft", includes: "Graded plywood with laminate finish, Hettich fittings and soft close mechanism." },
       { tier: "PREMIUM", name: "Premium Finish", price: "₹1,200 per sqft", includes: "Veneer or lacquer finish, premium hardware, integrated lighting and soft close throughout." },
-      { tier: "CUSTOM", name: "Bespoke", price: "On Quote", includes: "Full custom brief, parametric design, premium materials and signature TIQ finish." }
+      { tier: "CUSTOM", name: "Bespoke", price: "On Quote", includes: "Full custom brief, parametric design, premium materials and signature SA Interiors finish." }
     ],
     deckPrice: "From ₹850/sqft",
     number: "05"
@@ -165,193 +165,178 @@ const Products = () => {
 
   return (
     <div className="bg-white min-h-screen">
-      {/* Hero Section */}
-      <section className="relative w-full h-[60vh] min-h-[500px] flex items-center justify-center overflow-hidden">
-        {/* Background Image */}
-        <div className="absolute inset-0">
-          <img 
-            src="https://images.unsplash.com/photo-1497366811353-6870744d04b2?w=1600&q=80" 
-            alt="Products Hero" 
-            className="w-full h-full object-cover brightness-[0.4]" 
-          />
-        </div>
-        
-        <div className="max-w-7xl mx-auto px-6 text-center relative z-10 pt-16">
-          <ScrollReveal>
-            <p className="text-[#d89a5b] text-[10px] md:text-xs font-bold tracking-[0.5em] uppercase mb-4 pl-[0.5em]">Our Services</p>
-            <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-sans font-bold text-white mb-8 tracking-[0.1em] md:tracking-[0.2em] leading-[1.1] uppercase pl-[0.1em] md:pl-[0.2em]">
-              Everything Your <br /> Space Needs
-            </h1>
-            <p className="text-white/80 text-[15px] md:text-xl max-w-3xl mx-auto font-medium leading-relaxed">
-              Click any service to explore the full scope and pricing.
-            </p>
-          </ScrollReveal>
-        </div>
-      </section>
-
-      <div className="py-24 text-[#002121]">
-        <div className="container mx-auto px-6">
-
-        {/* Deck of Cards */}
-        <div className="flex lg:grid lg:grid-cols-5 gap-6 lg:gap-8 mb-8 overflow-x-auto pb-8 pt-4 -mx-6 px-6 lg:mx-0 lg:px-0 snap-x scroll-smooth scroll-pl-6 lg:scroll-pl-0 items-stretch">
-          
-          {productsData.map((product) => (
-            <button
-              key={product.id}
-              onClick={() => setActiveProductId(product.id)}
-              className={`flex-shrink-0 w-[160px] lg:w-auto snap-start flex flex-col text-left rounded-2xl overflow-hidden transition-all duration-500 border-2 ${
-                activeProductId === product.id
-                  ? "border-[#d89a5b] shadow-xl shadow-[#d89a5b]/10 transform -translate-y-1 bg-white"
-                  : "border-transparent bg-slate-50 hover:bg-white hover:shadow-lg opacity-80 hover:opacity-100"
-              }`}
-            >
-              <div className="h-32 lg:h-40 w-full overflow-hidden">
-                <img 
-                  src={product.deckImage} 
-                  alt={product.title} 
-                  className="w-full h-full object-cover transition-transform duration-700 hover:scale-110"
-                />
-              </div>
-              <div className="px-5 py-4 lg:px-6 lg:py-5 flex flex-col justify-between flex-grow">
-                <div>
-                  <span className={`text-sm font-bold block mb-1 ${activeProductId === product.id ? "text-[#d89a5b]" : "text-slate-400"}`}>
-                    {product.number}
-                  </span>
-                  <h3 className="font-semibold text-slate-900 leading-tight mb-2">
-                    {product.shortTitle}
-                  </h3>
-                </div>
-                <p className="text-sm font-medium text-[#965b32]">
-                  {product.deckPrice}
-                </p>
-              </div>
-            </button>
-          ))}
-          
-          {/* Trailing Mobile Spacer */}
-          <div className="flex-shrink-0 w-2 lg:hidden"></div>
-        </div>
-
-        {/* Details Section */}
-        <div id="product-details" className="bg-white shadow-[0_8px_30px_rgb(0,0,0,0.04)] ring-1 ring-slate-100 rounded-2xl md:rounded-[2rem] overflow-hidden mt-6">
-          
-          {/* Tabs */}
-          <div className="flex border-b border-slate-100 bg-white md:px-8">
-            <button
-              onClick={() => setActiveTab("overview")}
-              className={`flex-1 md:flex-none px-4 md:px-8 py-5 md:py-6 text-[12px] md:text-[13px] font-bold tracking-[0.1em] md:tracking-[0.15em] uppercase transition-all duration-300 relative text-center ${
-                activeTab === "overview" ? "text-[#002121]" : "text-slate-400 hover:text-slate-700"
-              }`}
-            >
-              Overview
-              {activeTab === "overview" && (
-                <span className="absolute bottom-0 left-0 right-0 h-0.5 bg-[#d89a5b]"></span>
-              )}
-            </button>
-            <button
-              onClick={() => setActiveTab("pricing")}
-              className={`flex-1 md:flex-none px-4 md:px-8 py-5 md:py-6 text-[12px] md:text-[13px] font-bold tracking-[0.1em] md:tracking-[0.15em] uppercase transition-all duration-300 relative text-center ${
-                activeTab === "pricing" ? "text-[#002121]" : "text-slate-400 hover:text-slate-700"
-              }`}
-            >
-              Pricing
-              {activeTab === "pricing" && (
-                <span className="absolute bottom-0 left-0 right-0 h-0.5 bg-[#d89a5b]"></span>
-              )}
-            </button>
-          </div>
-
-          {/* Content Area */}
-          <div className="p-6 md:p-8 lg:p-12">
-            
-            {activeTab === "overview" && (
-              <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-24 animate-fade-in">
-                {/* Text Content */}
-                <div>
-                  <p className="text-[#d89a5b] text-xs font-black tracking-[0.25em] uppercase mb-6 flex items-center gap-3">
-                    <span className="w-8 h-[1px] bg-[#d89a5b]"></span>
-                    {activeProduct.eyebrow}
-                  </p>
-                  <h2 className="text-[28px] sm:text-4xl md:text-5xl font-serif text-[#002121] mb-6 md:mb-8 leading-tight">
-                    {activeProduct.title}
-                  </h2>
-                  <p className="text-slate-500 text-lg font-light leading-[1.8] mb-10">
-                    {activeProduct.description}
-                  </p>
-                  
-                  <ul className="flex flex-col">
-                    {activeProduct.points.map((point, index) => (
-                      <li key={index} className="flex gap-4 items-start py-5 border-b border-slate-100 last:border-0">
-                        <div className="mt-2 flex-shrink-0">
-                          <div className="w-1.5 h-1.5 rounded-full bg-[#d89a5b]"></div>
-                        </div>
-                        <p className="text-slate-500 font-light leading-snug text-[15px] md:text-base">{point}</p>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-                
-                {/* Image */}
-                <div className="relative w-full h-[280px] sm:h-[400px] lg:h-auto lg:min-h-[500px] overflow-hidden rounded-xl md:rounded-3xl shadow-xl mt-4 md:mt-0">
-                  <img 
-                    src={activeProduct.overviewImage} 
-                    alt={activeProduct.title} 
-                    className="w-full h-full object-cover lg:absolute lg:inset-0"
-                  />
-                </div>
-              </div>
-            )}
-
-            {activeTab === "pricing" && (
-              <div className="animate-fade-in">
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8">
-                  {activeProduct.pricing.map((tier, index) => (
-                    <div 
-                      key={index} 
-                      className={`p-8 border transition-all duration-300 ${
-                        index === 1 
-                          ? "border-[#d89a5b] bg-[#fffaf5] shadow-lg shadow-[#d89a5b]/5 transform md:-translate-y-2" 
-                          : "border-transparent bg-slate-50 hover:border-[#d89a5b]/30 hover:bg-white"
-                      }`}
-                    >
-                      <p className="text-[#965b32] text-xs font-bold tracking-[0.2em] uppercase mb-4">
-                        {tier.tier}
-                      </p>
-                      <h3 className="text-2xl font-bold text-slate-900 mb-2">
-                        {tier.name}
-                      </h3>
-                      <p className="text-3xl font-serif text-[#d89a5b] mb-8">
-                        {tier.price}
-                      </p>
-                      
-                      <div className="h-px w-full bg-slate-100 mb-8 max-w-[50px]"></div>
-                      
-                      <p className="text-slate-600 leading-relaxed font-medium">
-                        {tier.includes}
-                      </p>
-                    </div>
-                  ))}
-                </div>
-              </div>
-            )}
-          </div>
-
-          {/* Bottom Bar */}
-          <div className="bg-[#002121] text-white p-10 lg:px-16 flex flex-col md:flex-row items-center justify-between gap-8 relative overflow-hidden">
-            <div className="absolute top-0 right-0 w-64 h-64 bg-[#d89a5b] rounded-full mix-blend-screen filter blur-[100px] opacity-10"></div>
-            <p className="text-white/80 font-light text-lg md:text-xl text-center md:text-left relative z-10">
-              <span className="font-semibold text-white">Not sure where to start?</span> We assess your space and advise for free.
-            </p>
-            <button
-              onClick={() => window.dispatchEvent(new CustomEvent("openConsultation"))}
-              className="bg-[#d89a5b] text-white px-10 py-5 rounded-none text-xs font-black tracking-[0.25em] uppercase hover:bg-white hover:text-[#002121] transition-all transform hover:scale-105 whitespace-nowrap flex items-center gap-3 shrink-0 relative z-10"
-            >
-              Get a Free Estimate <ArrowRight size={16} />
-            </button>
-          </div>
-
+      {/* Header with BG Image */}
+      <div className="relative overflow-hidden flex items-center justify-center" style={{ minHeight: '340px' }}>
+        <img
+          src="https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?w=1600&q=80"
+          alt=""
+          className="absolute inset-0 w-full h-full object-cover"
+        />
+        <div className="absolute inset-0 bg-[#002121]/85" />
+        <div className="relative z-10 text-center px-6 pt-16 pb-10 w-full">
+          <p className="text-[11px] font-bold tracking-[0.5em] uppercase text-[#b8864a] mb-3">Our Services</p>
+          <h1 className="text-4xl md:text-5xl font-serif text-white uppercase tracking-wide leading-tight mb-3">
+            We Got You <span className="text-[#d89a5b]">All Covered</span>
+          </h1>
+          <p className="text-white/70 text-[14px]">Click any service below to explore the full scope and pricing.</p>
         </div>
       </div>
+
+      <div className="py-8 text-[#002121]">
+        <div className="container mx-auto px-6">
+
+          {/* Deck of Cards — 5 col grid, no horizontal scroll */}
+          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3 mb-6 pt-2">
+            {productsData.map((product) => (
+              <button
+                key={product.id}
+                onClick={() => setActiveProductId(product.id)}
+                className={`flex flex-col text-left rounded-xl overflow-hidden transition-all duration-300 border-2 ${activeProductId === product.id
+                    ? "border-[#d89a5b] shadow-lg shadow-[#d89a5b]/10 -translate-y-2 scale-[1.02] bg-white"
+                    : "border-transparent bg-slate-50 hover:bg-white hover:shadow-md hover:-translate-y-1 hover:scale-[1.01] opacity-80 hover:opacity-100"
+                  }`}
+              >
+                <div className="h-28 lg:h-36 w-full overflow-hidden">
+                  <img
+                    src={product.deckImage}
+                    alt={product.title}
+                    className="w-full h-full object-cover transition-transform duration-700 hover:scale-110"
+                  />
+                </div>
+                <div className="px-3 py-3 flex flex-col justify-between flex-grow">
+                  <div>
+                    <span className={`text-[11px] font-bold block mb-0.5 ${activeProductId === product.id ? "text-[#d89a5b]" : "text-slate-400"}`}>
+                      {product.number}
+                    </span>
+                    <h3 className="font-semibold text-slate-900 leading-tight text-[13px] mb-1">
+                      {product.shortTitle}
+                    </h3>
+                  </div>
+                  <p className="text-[12px] font-medium text-[#965b32]">
+                    {product.deckPrice}
+                  </p>
+                </div>
+              </button>
+            ))}
+          </div>
+
+          {/* Details Section */}
+          <div id="product-details" className="bg-white shadow-[0_8px_30px_rgb(0,0,0,0.04)] ring-1 ring-slate-100 rounded-2xl md:rounded-[2rem] overflow-hidden mt-6">
+
+            {/* Tabs */}
+            <div className="flex border-b border-slate-100 bg-white md:px-8">
+              <button
+                onClick={() => setActiveTab("overview")}
+                className={`flex-1 md:flex-none px-4 md:px-8 py-5 md:py-6 text-[12px] md:text-[13px] font-bold tracking-[0.1em] md:tracking-[0.15em] uppercase transition-all duration-300 relative text-center ${activeTab === "overview" ? "text-[#002121]" : "text-slate-400 hover:text-slate-700"
+                  }`}
+              >
+                Overview
+                {activeTab === "overview" && (
+                  <span className="absolute bottom-0 left-0 right-0 h-0.5 bg-[#d89a5b]"></span>
+                )}
+              </button>
+              <button
+                onClick={() => setActiveTab("pricing")}
+                className={`flex-1 md:flex-none px-4 md:px-8 py-5 md:py-6 text-[12px] md:text-[13px] font-bold tracking-[0.1em] md:tracking-[0.15em] uppercase transition-all duration-300 relative text-center ${activeTab === "pricing" ? "text-[#002121]" : "text-slate-400 hover:text-slate-700"
+                  }`}
+              >
+                Pricing
+                {activeTab === "pricing" && (
+                  <span className="absolute bottom-0 left-0 right-0 h-0.5 bg-[#d89a5b]"></span>
+                )}
+              </button>
+            </div>
+
+            {/* Content Area */}
+            <div className="p-5 md:p-6">
+
+              {activeTab === "overview" && (
+                <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-10 animate-fade-in">
+                  {/* Text Content */}
+                  <div>
+                    <p className="text-[#d89a5b] text-[10px] font-black tracking-[0.25em] uppercase mb-3 flex items-center gap-3">
+                      <span className="w-6 h-[1px] bg-[#d89a5b]"></span>
+                      {activeProduct.eyebrow}
+                    </p>
+                    <h2 className="text-2xl md:text-3xl font-serif text-[#002121] mb-3 leading-tight">
+                      {activeProduct.title}
+                    </h2>
+                    <p className="text-slate-500 text-[13px] font-light leading-relaxed mb-4">
+                      {activeProduct.description}
+                    </p>
+
+                    <ul className="flex flex-col">
+                      {activeProduct.points.map((point, index) => (
+                        <li key={index} className="flex gap-3 items-start py-2 border-b border-slate-100 last:border-0">
+                          <div className="mt-1.5 flex-shrink-0">
+                            <div className="w-1.5 h-1.5 rounded-full bg-[#d89a5b]"></div>
+                          </div>
+                          <p className="text-slate-500 font-light leading-snug text-[13px]">{point}</p>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+
+                  {/* Image */}
+                  <div className="relative w-full h-[240px] sm:h-[320px] lg:h-auto lg:min-h-[350px] overflow-hidden rounded-xl shadow-xl mt-2 md:mt-0">
+                    <img
+                      src={activeProduct.overviewImage}
+                      alt={activeProduct.title}
+                      className="w-full h-full object-cover lg:absolute lg:inset-0"
+                    />
+                  </div>
+                </div>
+              )}
+
+              {activeTab === "pricing" && (
+                <div className="animate-fade-in">
+                  <div className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8">
+                    {activeProduct.pricing.map((tier, index) => (
+                      <div
+                        key={index}
+                        className={`p-8 border transition-all duration-300 ${index === 1
+                            ? "border-[#d89a5b] bg-[#fffaf5] shadow-lg shadow-[#d89a5b]/5 transform md:-translate-y-2"
+                            : "border-transparent bg-slate-50 hover:border-[#d89a5b]/30 hover:bg-white"
+                          }`}
+                      >
+                        <p className="text-[#965b32] text-xs font-bold tracking-[0.2em] uppercase mb-4">
+                          {tier.tier}
+                        </p>
+                        <h3 className="text-2xl font-bold text-slate-900 mb-2">
+                          {tier.name}
+                        </h3>
+                        <p className="text-3xl font-serif text-[#d89a5b] mb-8">
+                          {tier.price}
+                        </p>
+
+                        <div className="h-px w-full bg-slate-100 mb-8 max-w-[50px]"></div>
+
+                        <p className="text-slate-600 leading-relaxed font-medium">
+                          {tier.includes}
+                        </p>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              )}
+            </div>
+
+            {/* Bottom Bar */}
+            <div className="bg-[#002121] text-white p-10 lg:px-16 flex flex-col md:flex-row items-center justify-between gap-8 relative overflow-hidden">
+              <div className="absolute top-0 right-0 w-64 h-64 bg-[#d89a5b] rounded-full mix-blend-screen filter blur-[100px] opacity-10"></div>
+              <p className="text-white/80 font-light text-lg md:text-xl text-center md:text-left relative z-10">
+                <span className="font-semibold text-white">Not sure where to start?</span> We assess your space and advise for free.
+              </p>
+              <button
+                onClick={() => window.dispatchEvent(new CustomEvent("openConsultation"))}
+                className="bg-[#d89a5b] text-white px-10 py-5 rounded-none text-xs font-black tracking-[0.25em] uppercase hover:bg-white hover:text-[#002121] transition-all transform hover:scale-105 whitespace-nowrap flex items-center gap-3 shrink-0 relative z-10"
+              >
+                Get a Free Estimate <ArrowRight size={16} />
+              </button>
+            </div>
+
+          </div>
+        </div>
       </div>
     </div>
   );

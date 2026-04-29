@@ -84,23 +84,15 @@ const BeforeAfterSlider = ({
         {/* Handle */}
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
           <motion.div
-            animate={{ 
-              scale: isDragging ? 0.9 : 1,
-              backgroundColor: isDragging ? "rgba(255, 255, 255, 1)" : "rgba(255, 255, 255, 0.95)"
-            }}
-            className="w-12 h-12 md:w-14 md:h-14 rounded-full shadow-[0_0_50px_rgba(0,0,0,0.2)] flex items-center justify-center border border-white/60 backdrop-blur-md cursor-ew-resize"
+            animate={{ scale: isDragging ? 0.92 : 1 }}
+            className="w-12 h-12 md:w-14 md:h-14 rounded-full bg-white shadow-[0_0_0_3px_rgba(216,154,91,0.8),0_8px_32px_rgba(0,0,0,0.4)] flex items-center justify-center cursor-ew-resize"
           >
-            <div className="flex gap-2 items-center">
-              <div className="w-0.5 h-4 bg-[#d89a5b]/70" />
-              <div className="w-0.5 h-4 bg-[#d89a5b]/70" />
+            <div className="flex gap-1.5 items-center">
+              <svg width="10" height="10" viewBox="0 0 10 10" fill="none"><path d="M6 1L2 5L6 9" stroke="#002121" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"/></svg>
+              <div className="w-[2px] h-5 bg-[#d89a5b] rounded-full" />
+              <svg width="10" height="10" viewBox="0 0 10 10" fill="none"><path d="M4 1L8 5L4 9" stroke="#002121" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"/></svg>
             </div>
           </motion.div>
-          
-          <div className="absolute -top-14 left-1/2 -translate-x-1/2 opacity-0 group-hover/container:opacity-100 transition-all duration-500 whitespace-nowrap scale-90 group-hover/container:scale-100">
-            <span className="text-[10px] tracking-[0.5em] uppercase text-white font-black drop-shadow-lg bg-black/10 px-4 py-1 backdrop-blur-sm">
-              Slide
-            </span>
-          </div>
         </div>
       </div>
 

@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef } from "react";
 import { Link, useLocation } from "react-router-dom";
-import { ChevronDown, Menu, X } from "lucide-react";
+import { ChevronDown, Menu, X, Compass } from "lucide-react";
 
 const Navbar = () => {
   const location = useLocation();
@@ -82,13 +82,14 @@ const Navbar = () => {
 
   return (
     <>
-      <header className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 text-white ${(scrolled || activeDropdown !== null || isSolidPage) ? 'bg-[#002121] border-b border-white/5 shadow-xl' : 'bg-transparent border-b border-transparent'}`}>
+      <header className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 text-white ${(scrolled || activeDropdown !== null || isSolidPage) ? 'bg-[#002121] shadow-1xl' : 'bg-gradient-to-b from-[#002121] via-[#002121]/60 to-transparent'}`}>
         <div className="w-full flex items-center justify-between px-8 lg:px-16 py-3">
 
           {/* LOGO */}
-          <Link to="/" className="flex items-center gap-3 group shrink-0">
-            <span className="text-lg md:text-xl font-brand tracking-[0.2em] font-semibold transition-colors group-hover:text-[#d89a5b] uppercase">
-              SA interiors
+          <Link to="/" className="flex items-center gap-2 md:gap-3 group shrink-0">
+            <Compass className="w-6 h-6 md:w-7 md:h-7 text-[#d89a5b] group-hover:rotate-180 transition-transform duration-700" />
+            <span className="text-[13px] sm:text-base md:text-xl font-sans font-black tracking-wider md:tracking-widest transition-colors group-hover:text-[#d89a5b] uppercase drop-shadow-md">
+              SA INTERIORS
             </span>
           </Link>
 
@@ -168,9 +169,9 @@ const Navbar = () => {
                 <div className="px-8 lg:px-16 py-12">
                   <div className="flex flex-col gap-6 max-w-xs">
                     {navLinks.company.map((item) => (
-                      <Link 
-                        key={item.name} 
-                        to={item.path === '/contact' ? '#' : item.path} 
+                      <Link
+                        key={item.name}
+                        to={item.path === '/contact' ? '#' : item.path}
                         onClick={(e) => {
                           if (item.path === '/contact') {
                             e.preventDefault();
@@ -193,7 +194,7 @@ const Navbar = () => {
           <div className="hidden lg:flex items-center gap-8">
             <button
               onClick={() => window.dispatchEvent(new CustomEvent("openConsultation"))}
-              className="bg-[#965b32] text-white px-8 py-3 rounded-none text-[11px] font-black tracking-[0.25em] uppercase hover:bg-white hover:text-[#002121] transition-all transform hover:scale-105 whitespace-nowrap border-2 border-transparent hover:border-[#965b32]"
+              className="bg-gradient-to-r from-[#E4A853] via-[#FCE3A1] to-[#D5933C] text-[#001A1A] px-8 py-3.5 rounded-none text-[13px] font-black tracking-[0.25em] uppercase hover:from-white hover:to-white transition-all transform hover:scale-105 whitespace-nowrap shadow-[0_0_25px_rgba(228,168,83,0.5)] border border-[#FCE3A1]/50"
             >
               Talk to us
             </button>
@@ -209,8 +210,11 @@ const Navbar = () => {
       {/* MOBILE MENU OVERLAY */}
       <div className={`fixed inset-0 bg-[#002121] text-white z-[60] flex flex-col p-10 transition-transform duration-500 xl:hidden overflow-y-auto ${menuOpen ? 'translate-x-0' : 'translate-x-full'}`}>
         <div className="flex justify-between items-center gap-6 mb-12 border-b border-white/10 pb-6 w-full">
-          <Link to="/" onClick={() => setMenuOpen(false)} className="flex items-center gap-3 shrink-0 overflow-hidden">
-            <span className="text-[17px] sm:text-lg font-brand tracking-[0.2em] uppercase font-bold text-white whitespace-nowrap">SA interiors</span>
+          <Link to="/" onClick={() => setMenuOpen(false)} className="flex items-center gap-2 shrink-0">
+            <Compass className="w-5 h-5 md:w-6 md:h-6 text-[#d89a5b]" />
+            <span className="text-[13px] sm:text-base font-sans tracking-wider md:tracking-widest uppercase font-black text-white drop-shadow-md">
+              SA INTERIORS
+            </span>
           </Link>
           <button onClick={() => setMenuOpen(false)} className="w-10 h-10 flex items-center justify-center border border-white/10 hover:border-[#d89a5b] text-white hover:text-[#d89a5b] transition-all bg-[#001c1c] shrink-0">
             <X size={22} strokeWidth={1.5} />
@@ -263,10 +267,10 @@ const Navbar = () => {
             </button>
             <div className={`flex flex-col gap-4 overflow-hidden transition-all duration-300 ${mobileExpanded === 'company' ? 'mt-6 max-h-[500px] opacity-100' : 'max-h-0 opacity-0'}`}>
               {navLinks.company.map(item => (
-                <Link 
-                  key={item.name} 
-                  to={item.path === '/contact' ? '#' : item.path} 
-                  className="text-[19px] pl-4 text-white/70 hover:text-white transition-colors" 
+                <Link
+                  key={item.name}
+                  to={item.path === '/contact' ? '#' : item.path}
+                  className="text-[19px] pl-4 text-white/70 hover:text-white transition-colors"
                   onClick={(e) => {
                     if (item.path === '/contact') {
                       e.preventDefault();
@@ -289,7 +293,7 @@ const Navbar = () => {
             setMenuOpen(false);
             window.dispatchEvent(new CustomEvent('openConsultation'));
           }}
-          className="mt-auto w-full bg-[#965b32] text-white py-6 rounded-none text-center text-xs font-black tracking-[0.4em] uppercase shrink-0 transition-transform hover:scale-[1.02]"
+          className="mt-auto w-full bg-gradient-to-r from-[#E4A853] via-[#FCE3A1] to-[#D5933C] text-[#001A1A] py-6 rounded-none text-center text-[13px] font-black tracking-[0.4em] uppercase shrink-0 transition-transform hover:scale-[1.02] shadow-[0_0_25px_rgba(228,168,83,0.5)] border-t border-[#FCE3A1]/50"
         >
           Talk to us
         </Link>
