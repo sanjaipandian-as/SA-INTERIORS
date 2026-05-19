@@ -23,7 +23,6 @@ import CountUp from "react-countup";
 import { useNavigate } from "react-router-dom";
 import { CitiesIcon, ProjectsIcon, OngoingIcon, PartnersIcon, ExperienceIcon } from "@/components/StatIcons";
 import { DeliveryIcon, CostsIcon, WarrantyIcon, EMIIcon, MDFIcon, EstimateIcon, DesignerIcon, DesignIcon, ConsultIcon } from "@/components/TrustIcons";
-import BeforeAfterSlider from "@/components/BeforeAfterSlider";
 import {
   SpacePlanningIcon, DesignConsultationIcon, LightingDesignIcon, CustomFurnitureIcon,
   ArtAccessoryIcon, ColorConsultationIcon, ProjectManagementIcon, StylingStagingIcon,
@@ -440,12 +439,12 @@ const FeaturedProjects = () => {
               <p className="text-[#d89a5b] text-[11px] font-bold tracking-[0.3em] uppercase mb-2">Our Work</p>
               <h2 className="text-4xl md:text-5xl lg:text-[54px] font-brand text-[#002121] uppercase leading-tight tracking-wide">Featured Projects</h2>
             </div>
-            <Link
-              to="/portfolio"
-              className="hidden md:flex items-center gap-3 bg-[#002121] text-white px-8 py-4 rounded-none text-[11px] font-black tracking-[0.2em] uppercase hover:bg-[#d89a5b] transition-all duration-300 group shadow-md"
-            >
-              View All Projects <ArrowRight className="w-4 h-4 group-hover:translate-x-2 transition-transform duration-300" />
-            </Link>
+                {/* <Link
+                  to="/portfolio"
+                  className="hidden md:flex items-center gap-3 bg-[#002121] text-white px-8 py-4 rounded-none text-[11px] font-black tracking-[0.2em] uppercase hover:bg-[#d89a5b] transition-all duration-300 group shadow-md"
+                >
+                  View All Projects <ArrowRight className="w-4 h-4 group-hover:translate-x-2 transition-transform duration-300" />
+                </Link> */}
           </div>
         </ScrollReveal>
 
@@ -954,56 +953,30 @@ const Index = () => {
         </div>
       </section>
 
-      {/* Transformations Section — Before/After + HomeLane Luxe Style */}
-      <section className="bg-white overflow-hidden">
-
-        {/* Main Two-Column Row */}
-        <div className="grid grid-cols-1 lg:grid-cols-2">
-
-          {/* Left: Before/After Slider — hidden on mobile */}
-          <motion.div
-            initial={{ opacity: 0, x: -30 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            transition={{ duration: 1, ease: [0.22, 1, 0.36, 1] }}
-            className="hidden md:block relative w-full min-h-[480px]"
-          >
-            <BeforeAfterSlider
-              beforeImage="/before.webp"
-              afterImage="/after.webp"
-              brandName="SA"
-              className="w-full h-full"
-            />
-            {/* Floating stat badge */}
-            <div className="absolute bottom-8 right-8 bg-[#002121] text-white px-6 py-4 shadow-2xl">
-              <p className="text-[9px] tracking-[0.3em] uppercase opacity-60 mb-1">Project Success</p>
-              <p className="text-2xl font-sans font-light tracking-tighter">100%<span className="text-[12px] ml-1 opacity-40">Precision</span></p>
-            </div>
-          </motion.div>
-
-          {/* Right: Content Column */}
+      {/* Transformations Section — HomeLane Luxe Style */}
+      <section className="bg-white overflow-hidden py-16">
+        <div className="max-w-7xl mx-auto px-6">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.1 }}
-            className="flex flex-col justify-between px-8 md:px-12 py-12 bg-white"
+            className="flex flex-col items-center text-center bg-white"
           >
             {/* Top: Heading + Badge + CTA */}
-            <div className="mb-8">
-              <h2 className="text-4xl md:text-5xl font-sans font-semibold text-[#002121] leading-[1.1] mb-4 tracking-tight">
-                Turning Visions<br />
-                <span className="font-semibold text-[#c8864a] ">Into Livable Art.</span>
+            <div className="mb-8 w-full">
+              <h2 className="text-4xl md:text-5xl lg:text-[54px] font-sans font-semibold text-[#002121] leading-tight mb-4 tracking-tight">
+                Turning Visions <span className="font-semibold text-[#c8864a]">Into Livable Art.</span>
               </h2>
-              <p className="text-gray-400 text-[14px] leading-[1.8] max-w-md mb-6">
+              <p className="text-gray-400 text-[14px] md:text-base leading-[1.8] max-w-2xl mb-8 mx-auto">
                 Witness the seamless evolution of a space. At SA Interiors, we specialize in high-end transformations that balance aesthetic grandeur with functional precision.
               </p>
 
-
               {/* 3 Feature Icons */}
-              <div className="grid grid-cols-3 gap-4 border-t border-gray-100 pt-6">
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-8 border-t border-gray-100 pt-8 w-full max-w-5xl mx-auto">
                 {[
                   {
                     icon: (
-                      <svg width="52" height="52" viewBox="0 0 52 52" fill="none" stroke="#b8864a" strokeWidth="1.3">
+                      <svg width="52" height="52" viewBox="0 0 52 52" fill="none" stroke="#b8864a" strokeWidth="1.3" className="mx-auto">
                         {/* Open book */}
                         <path d="M10 38V14c0-1 .8-2 2-2h12v26H12c-1.1 0-2-.9-2-2z"/>
                         <path d="M42 38V14c0-1-.8-2-2-2H28v26h12c1.1 0 2-.9 2-2z"/>
@@ -1018,7 +991,7 @@ const Index = () => {
                   },
                   {
                     icon: (
-                      <svg width="52" height="52" viewBox="0 0 52 52" fill="none" stroke="#b8864a" strokeWidth="1.3">
+                      <svg width="52" height="52" viewBox="0 0 52 52" fill="none" stroke="#b8864a" strokeWidth="1.3" className="mx-auto">
                         {/* Arch/doorway shape */}
                         <path d="M16 42V28c0-5.5 4.5-10 10-10s10 4.5 10 10v14"/>
                         <path d="M12 42h28"/>
@@ -1031,7 +1004,7 @@ const Index = () => {
                   },
                   {
                     icon: (
-                      <svg width="52" height="52" viewBox="0 0 52 52" fill="none" stroke="#b8864a" strokeWidth="1.3">
+                      <svg width="52" height="52" viewBox="0 0 52 52" fill="none" stroke="#b8864a" strokeWidth="1.3" className="mx-auto">
                         {/* Center person */}
                         <circle cx="26" cy="20" r="5"/>
                         <path d="M16 42c0-5.5 4.5-10 10-10s10 4.5 10 10"/>
@@ -1051,7 +1024,7 @@ const Index = () => {
                     desc: "25+ high end homes executed to perfection"
                   },
                 ].map((feat, i) => (
-                  <div key={i} className="flex flex-col gap-3">
+                  <div key={i} className="flex flex-col items-center text-center gap-3">
                     {feat.icon}
                     <h4 className="text-[#b8864a] text-[15px] md:text-[16px] font-semibold leading-snug whitespace-pre-line mt-1">{feat.title}</h4>
                     <p className="text-gray-400 text-[12px] leading-relaxed">{feat.desc}</p>
@@ -1126,17 +1099,17 @@ const Index = () => {
               className="px-12"
             >
               {[
-                { stat: "45", label: "Day Delivery", icon: <svg width="40" height="40" viewBox="0 0 40 40" fill="none" stroke="#b8864a" strokeWidth="1.3"><rect x="6" y="10" width="28" height="24" rx="2"/><path d="M6 16h28M14 10V7M26 10V7"/><text x="20" y="30" textAnchor="middle" fontSize="11" fill="#b8864a" stroke="none" fontWeight="600">45</text></svg> },
-                { stat: "Easy", label: "EMIs Available", icon: <svg width="40" height="40" viewBox="0 0 40 40" fill="none" stroke="#b8864a" strokeWidth="1.3"><rect x="6" y="12" width="28" height="18" rx="2"/><path d="M6 18h28M12 24h6M12 28h4"/><circle cx="30" cy="28" r="4" fill="#b8864a" stroke="none"/><path d="M29 28l.8.8 1.7-1.7" stroke="white" strokeWidth="1.2" fill="none"/></svg> },
-                { stat: "600+", label: "In-House Designers", icon: <svg width="40" height="40" viewBox="0 0 40 40" fill="none" stroke="#b8864a" strokeWidth="1.3"><circle cx="20" cy="14" r="6"/><path d="M8 36c0-6.6 5.4-12 12-12s12 5.4 12 12"/><circle cx="10" cy="16" r="4"/><circle cx="30" cy="16" r="4"/><path d="M4 34c0-4.4 2.7-8 6-8M36 34c0-4.4-2.7-8-6-8"/></svg> },
-                { stat: "55000+", label: "Homes Delivered", icon: <svg width="40" height="40" viewBox="0 0 40 40" fill="none" stroke="#b8864a" strokeWidth="1.3"><path d="M20 6L4 18v18h32V18L20 6z"/><path d="M15 36V26h10v10"/></svg> },
-                { stat: "79", label: "Studios", icon: <svg width="40" height="40" viewBox="0 0 40 40" fill="none" stroke="#b8864a" strokeWidth="1.3"><rect x="8" y="12" width="24" height="20" rx="1"/><path d="M4 32h32M14 12V8h12v4"/><circle cx="20" cy="22" r="4"/></svg> },
-                { stat: "48", label: "Cities", icon: <svg width="40" height="40" viewBox="0 0 40 40" fill="none" stroke="#b8864a" strokeWidth="1.3"><path d="M20 6c-5.5 0-10 4.5-10 10 0 7.5 10 18 10 18s10-10.5 10-18c0-5.5-4.5-10-10-10z"/><circle cx="20" cy="16" r="3.5"/></svg> },
-                { stat: "10yr", label: "Warranty", icon: <svg width="40" height="40" viewBox="0 0 40 40" fill="none" stroke="#b8864a" strokeWidth="1.3"><path d="M20 6l3 6 6.7 1-4.9 4.7 1.2 6.7L20 21.4l-5.9 3 1.2-6.7L10.3 13 17 12z"/><path d="M20 6v0"/></svg> },
-                { stat: "100%", label: "Zero Error", icon: <svg width="40" height="40" viewBox="0 0 40 40" fill="none" stroke="#b8864a" strokeWidth="1.3"><circle cx="20" cy="20" r="14"/><path d="M13 20l5 5 9-9"/></svg> },
+                { stat: "45", label: "Day Delivery", icon: <svg width="52" height="52" viewBox="0 0 40 40" fill="none" stroke="#b8864a" strokeWidth="1.3"><rect x="6" y="10" width="28" height="24" rx="2"/><path d="M6 16h28M14 10V7M26 10V7"/><text x="20" y="30" textAnchor="middle" fontSize="11" fill="#b8864a" stroke="none" fontWeight="600">45</text></svg> },
+                { stat: "Easy", label: "EMIs Available", icon: <svg width="52" height="52" viewBox="0 0 40 40" fill="none" stroke="#b8864a" strokeWidth="1.3"><rect x="6" y="12" width="28" height="18" rx="2"/><path d="M6 18h28M12 24h6M12 28h4"/><circle cx="30" cy="28" r="4" fill="#b8864a" stroke="none"/><path d="M29 28l.8.8 1.7-1.7" stroke="white" strokeWidth="1.2" fill="none"/></svg> },
+                { stat: "600+", label: "In-House Designers", icon: <svg width="52" height="52" viewBox="0 0 40 40" fill="none" stroke="#b8864a" strokeWidth="1.3"><circle cx="20" cy="14" r="6"/><path d="M8 36c0-6.6 5.4-12 12-12s12 5.4 12 12"/><circle cx="10" cy="16" r="4"/><circle cx="30" cy="16" r="4"/><path d="M4 34c0-4.4 2.7-8 6-8M36 34c0-4.4-2.7-8-6-8"/></svg> },
+                { stat: "55000+", label: "Homes Delivered", icon: <svg width="52" height="52" viewBox="0 0 40 40" fill="none" stroke="#b8864a" strokeWidth="1.3"><path d="M20 6L4 18v18h32V18L20 6z"/><path d="M15 36V26h10v10"/></svg> },
+                { stat: "79", label: "Studios", icon: <svg width="52" height="52" viewBox="0 0 40 40" fill="none" stroke="#b8864a" strokeWidth="1.3"><rect x="8" y="12" width="24" height="20" rx="1"/><path d="M4 32h32M14 12V8h12v4"/><circle cx="20" cy="22" r="4"/></svg> },
+                { stat: "48", label: "Cities", icon: <svg width="52" height="52" viewBox="0 0 40 40" fill="none" stroke="#b8864a" strokeWidth="1.3"><path d="M20 6c-5.5 0-10 4.5-10 10 0 7.5 10 18 10 18s10-10.5 10-18c0-5.5-4.5-10-10-10z"/><circle cx="20" cy="16" r="3.5"/></svg> },
+                { stat: "10yr", label: "Warranty", icon: <svg width="52" height="52" viewBox="0 0 40 40" fill="none" stroke="#b8864a" strokeWidth="1.3"><path d="M20 6l3 6 6.7 1-4.9 4.7 1.2 6.7L20 21.4l-5.9 3 1.2-6.7L10.3 13 17 12z"/><path d="M20 6v0"/></svg> },
+                { stat: "100%", label: "Zero Error", icon: <svg width="52" height="52" viewBox="0 0 40 40" fill="none" stroke="#b8864a" strokeWidth="1.3"><circle cx="20" cy="20" r="14"/><path d="M13 20l5 5 9-9"/></svg> },
               ].map((item, i) => (
                 <SwiperSlide key={i}>
-                  <div className="flex flex-col items-center text-center gap-3 px-4 py-2">
+                  <div className="flex flex-col items-center text-center gap-1 px-4 py-2">
                     {item.icon}
                     <div>
                       <p className="text-[#002121] text-[18px] md:text-[22px] font-bold leading-none">{item.stat}</p>
