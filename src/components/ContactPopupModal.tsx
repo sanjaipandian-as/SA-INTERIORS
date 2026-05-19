@@ -101,7 +101,7 @@ const ContactPopupModal: React.FC<ContactPopupModalProps> = ({ isOpen, onClose }
     }
 
     recordRLSubmission();
-    const message = `Hi SA Interiors! I would like a free consultation.\nName: ${name}\nI am a: ${role}\nLooking to: ${purpose}\nProperty: ${propertyType}\nLocation: ${city || "Not specified"}\nPhone: +91 ${cleanPhone}`;
+    const message = `Hi SA Interiors! I would like a free consultation.\nName: ${name}\nI am a: ${role}\nGoal: ${purpose}\nProperty: ${propertyType}\nLocation: ${city || "Not specified"}\nPhone: +91 ${cleanPhone}`;
     const encodedMessage = encodeURIComponent(message);
     window.open(`https://wa.me/918056269261?text=${encodedMessage}`, "_blank");
     setSubmitSuccess(true);
@@ -231,7 +231,7 @@ const ContactPopupModal: React.FC<ContactPopupModalProps> = ({ isOpen, onClose }
 
                 {/* 2. Looking To */}
                 <div className="space-y-2">
-                  <label className="text-[10px] font-bold text-gray-400 uppercase tracking-widest block">I am looking to</label>
+                  <label className="text-[10px] font-bold text-gray-400 uppercase tracking-widest block">I want to</label>
                   <div className="flex flex-wrap gap-2">
                     {["New Home", "Renovate", "Rental Space"].map((item) => (
                       <button
